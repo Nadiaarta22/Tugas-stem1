@@ -88,3 +88,8 @@ footer {
     background: #0a9396;
     color: white;
 }
+
+section:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
