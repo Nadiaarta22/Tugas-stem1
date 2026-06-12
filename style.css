@@ -18,7 +18,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     background: #0096c7;
-    padding: 18px 50px;
+    padding: 15px 40px;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -26,7 +26,7 @@ nav {
 
 .logo {
     color: white;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
 }
 
@@ -36,12 +36,12 @@ nav ul {
 }
 
 nav ul li {
-    margin-left: 25px;
+    margin-left: 20px;
 }
 
 nav ul li a {
-    color: white;
     text-decoration: none;
+    color: white;
     font-weight: 500;
 }
 
@@ -51,52 +51,41 @@ nav ul li a:hover {
 
 /* HERO */
 .hero {
-    background: linear-gradient(135deg, #0096c7, #00b4d8, #48cae4);
-    color: white;
     text-align: center;
     padding: 100px 20px;
+    background: linear-gradient(135deg, #0096c7, #00b4d8, #48cae4);
+    color: white;
 }
 
 .hero h1 {
     font-size: 3rem;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+}
+
+.hero h2 {
+    margin-bottom: 15px;
 }
 
 .hero p {
     max-width: 800px;
     margin: auto;
-    font-size: 1.1rem;
 }
 
-/* BUTTON */
 .btn {
     display: inline-block;
-    margin-top: 25px;
-    padding: 12px 28px;
+    margin-top: 20px;
+    padding: 12px 25px;
     background: white;
     color: #0096c7;
     text-decoration: none;
     border-radius: 30px;
-    font-weight: 600;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
 }
 
 .btn:hover {
     opacity: 0.9;
-}
-
-/* SECTION */
-.section {
-    max-width: 1100px;
-    margin: 35px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-}
-
-.section h1,
-.section h2 {
-    margin-bottom: 20px;
 }
 
 /* STATS */
@@ -111,10 +100,10 @@ nav ul li a:hover {
 .stat-card {
     background: white;
     width: 220px;
-    text-align: center;
     padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .stat-card h2 {
@@ -122,16 +111,30 @@ nav ul li a:hover {
     font-size: 40px;
 }
 
-/* GRID SDGS */
+/* SECTION */
+.section {
+    max-width: 1100px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.section h2 {
+    margin-bottom: 20px;
+}
+
+/* SDG GRID */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
     gap: 15px;
 }
 
 .grid img {
     width: 100%;
-    border-radius: 12px;
+    border-radius: 10px;
     transition: 0.3s;
 }
 
@@ -139,10 +142,10 @@ nav ul li a:hover {
     transform: scale(1.05);
 }
 
-/* FACT CARD */
+/* FACT */
 .fact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
     gap: 20px;
 }
 
@@ -152,24 +155,40 @@ nav ul li a:hover {
     border-radius: 12px;
 }
 
+/* TIMELINE */
+.timeline {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.timeline-item {
+    background: #0096c7;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
 /* EMPATHY */
 .empathy-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
     gap: 20px;
 }
 
 .empathy-card {
     background: #f8fafc;
     padding: 20px;
-    border-radius: 12px;
-    border-left: 5px solid #00b4d8;
+    border-left: 5px solid #0096c7;
+    border-radius: 10px;
 }
 
 /* IDEATION */
 .idea-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
     gap: 20px;
 }
 
@@ -183,7 +202,7 @@ nav ul li a:hover {
 /* PROTOTYPE */
 .canvas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
     gap: 20px;
 }
 
@@ -212,7 +231,7 @@ nav ul li a:hover {
 /* REFLECTION */
 .reflection-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
     gap: 20px;
 }
 
@@ -221,6 +240,25 @@ nav ul li a:hover {
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* INPUT */
+input[type="number"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+/* RESULT */
+#hasilAir,
+#hasilHujan {
+    margin-top: 20px;
+    background: #e3f2fd;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #0096c7;
 }
 
 /* FOOTER */
@@ -247,14 +285,20 @@ footer {
     }
 
     nav ul li {
-        margin: 8px;
+        margin: 5px;
     }
 
     .hero h1 {
         font-size: 2rem;
     }
 
-    .section {
-        margin: 20px;
+    .stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .timeline {
+        flex-direction: column;
+        align-items: center;
     }
 }
