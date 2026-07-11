@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Flask
+instance/
+.webassets-cache
+.env
+.flaskenv
+
+# Machine Learning Models
+model.joblib
+model_info.json
+*.pkl
+*.pickle
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# VS Code
+.vscode/
+launch.json
+settings.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp Files
+*.tmp
+*.log
+*.bak
+*~
+
+# Node (if using any JS build tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+.tox/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
