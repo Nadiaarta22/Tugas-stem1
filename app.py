@@ -13,18 +13,18 @@ INFO_FILE = 'model_info.json'
 
 def load_or_train_model():
     if not os.path.exists(MODEL_FILE) or not os.path.exists(INFO_FILE):
-        print("Model or info not found. Training model now...")
+        print("Model atau informasi tidak ditemukan. Melatih model sekarang...")
         try:
             # Run train_model.py
             subprocess.run(['python', 'train_model.py'], check=True)
         except Exception as e:
-            print(f"Error training model: {e}")
+            print(f"Gagal melatih model melalui script: {e}")
             # Direct fallback training in-memory if script fails
             import numpy as np
             import pandas as pd
             from sklearn.ensemble import RandomForestRegressor
             
-            print("Running in-memory training fallback...")
+            print("Menjalankan pelatihan fallback di memori...")
             np.random.seed(42)
             nutrient_runoff = np.random.uniform(0, 100, 100)
             co2_emissions = np.random.uniform(200, 1000, 100)
@@ -67,7 +67,7 @@ def load_or_train_model():
 try:
     model, model_info = load_or_train_model()
 except Exception as e:
-    print(f"Error during initial model load: {e}")
+    print(f"Gagal memuat model pada startup: {e}")
     model, model_info = None, None
 
 @app.route('/health', methods=['GET'])
@@ -81,7 +81,7 @@ def predict():
         try:
             model, model_info = load_or_train_model()
         except Exception as e:
-            return jsonify({"error": f"Model not loaded and training failed: {str(e)}"}), 500
+            return jsonify({"error": f"Model tidak dapat dimuat dan pelatihan gagal: {str(e)}"}), 500
 
     try:
         data = request.get_json(force=True)
@@ -116,7 +116,7 @@ def predict():
             })
         })
     except Exception as e:
-        return jsonify({"error": f"Prediction failed: {str(e)}"}), 400
+        return jsonify({"error": f"Prediksi gagal: {str(e)}"}), 400
 
 if __name__ == '__main__':
     # Run server on port 5000

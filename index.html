@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Platform AI Prediksi Risiko Pengasaman Laut & Konservasi Air</title>
+    <title>Platform Pemantauan Risiko Pengasaman Laut dan Konservasi Air</title>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Plus Jakarta Sans & Poppins) -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
@@ -32,67 +32,67 @@
         }
     </script>
     
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <style>
-        /* Custom animations & glassmorphism */
+        html {
+            scroll-behavior: smooth;
+        }
         .glass-nav {
-            background: rgba(15, 44, 89, 0.9);
+            background: rgba(15, 44, 89, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
-        .glow-sdg-6 {
-            box-shadow: 0 0 25px rgba(0, 173, 198, 0.6);
+        .sdg-highlight-6 {
+            box-shadow: 0 0 20px rgba(0, 173, 198, 0.4);
             border: 3px solid #00ADC6;
         }
-        .glow-sdg-14 {
-            box-shadow: 0 0 25px rgba(0, 128, 128, 0.7);
+        .sdg-highlight-14 {
+            box-shadow: 0 0 20px rgba(0, 128, 128, 0.4);
             border: 3px solid #008080;
         }
-        .hover-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #00ADC6;
+            cursor: pointer;
+            box-shadow: 0 0 6px rgba(0, 173, 198, 0.4);
         }
-        .hover-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .nav-link-active {
+            color: #38BDF8;
+            border-bottom: 2px solid #38BDF8;
         }
     </style>
 </head>
 <body class="bg-marine-light text-slate-800 font-sans min-h-screen flex flex-col">
 
     <!-- TOP NAVBAR -->
-    <nav class="glass-nav text-white sticky top-0 z-50 border-b border-white/10 transition-all duration-300">
+    <nav class="glass-nav text-white sticky top-0 z-50 border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center space-x-3">
-                    <span class="text-2xl">🌊</span>
-                    <span class="font-extrabold text-xl tracking-wider bg-gradient-to-r from-marine-accent to-cyan-300 bg-clip-text text-transparent">AQUA-GUARD AI</span>
+                    <span class="font-extrabold text-lg tracking-wider bg-gradient-to-r from-marine-accent to-cyan-300 bg-clip-text text-transparent">AQUA-GUARD PLATFORM</span>
                 </div>
                 
-                <!-- Desktop Nav Links -->
-                <div class="hidden md:flex items-center space-x-8 font-medium">
-                    <a href="index.html" class="text-marine-accent border-b-2 border-marine-accent px-1 py-2 text-sm transition-colors duration-200">Home / SDGs</a>
-                    <a href="dashboard.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">Survei Dashboard</a>
-                    <a href="predict.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">AI Predictor & Simulation</a>
-                    
-                    <!-- Dropdown Design Thinking -->
-                    <div class="relative group">
-                        <button class="flex items-center space-x-1 hover:text-marine-accent transition px-1 py-2 text-sm focus:outline-none" id="dtDropdownBtn">
-                            <span>Design Thinking</span>
-                            <svg class="w-4 h-4 fill-current transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20">
-                                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
-                            </svg>
-                        </button>
-                        <div class="absolute right-0 mt-2 w-52 bg-marine-deep text-white rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-white/10 overflow-hidden py-1">
-                            <a href="empathy.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">🔍 Empathy & Research</a>
-                            <a href="ideation.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">💡 Ideation Process</a>
-                            <a href="prototype.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">🛠 Prototype Solution</a>
-                            <a href="testing.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">📊 Testing & Review</a>
-                            <a href="reflection.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">📝 Project Reflection</a>
-                        </div>
-                    </div>
+                <!-- Desktop Nav Links (Linear Navigation) -->
+                <div class="hidden lg:flex items-center space-x-5 font-semibold text-xs tracking-wider uppercase">
+                    <a href="#home" class="nav-link hover:text-marine-accent px-2 py-1 transition-colors duration-200">Home</a>
+                    <a href="#fakta" class="nav-link hover:text-marine-accent px-2 py-1 transition-colors duration-200">Fakta</a>
+                    <a href="#target" class="nav-link hover:text-marine-accent px-2 py-1 transition-colors duration-200">Target</a>
+                    <a href="#swot" class="nav-link hover:text-marine-accent px-2 py-1 transition-colors duration-200">SWOT</a>
+                    <a href="#proses" class="nav-link hover:text-marine-accent px-2 py-1 transition-colors duration-200">Proses</a>
+                    <a href="#solusi" class="nav-link hover:text-marine-accent px-2 py-1 transition-colors duration-200">Solusi</a>
+                    <a href="#video-pitch" class="nav-link hover:text-marine-accent px-2 py-1 transition-colors duration-200">Video Pitch</a>
+                    <a href="#refleksi" class="nav-link hover:text-marine-accent px-2 py-1 transition-colors duration-200">Refleksi</a>
+                    <a href="#referensi" class="nav-link hover:text-marine-accent px-2 py-1 transition-colors duration-200">Referensi</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden">
+                <div class="lg:hidden">
                     <button id="mobileMenuBtn" class="text-white hover:text-marine-accent focus:outline-none p-2 rounded-lg bg-white/5 border border-white/10">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -103,233 +103,686 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-marine-deep border-t border-white/10 px-4 py-4 space-y-3">
-            <a href="index.html" class="block text-marine-accent font-semibold text-base py-2">Home / SDGs</a>
-            <a href="dashboard.html" class="block hover:text-marine-accent text-base py-2 transition-colors">Survei Dashboard</a>
-            <a href="predict.html" class="block hover:text-marine-accent text-base py-2 transition-colors">AI Predictor & Simulation</a>
-            <div class="pt-2 border-t border-white/5">
-                <span class="block text-slate-400 text-xs uppercase tracking-wider mb-2">Design Thinking Process</span>
-                <a href="empathy.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">🔍 Empathy & Research</a>
-                <a href="ideation.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">💡 Ideation Process</a>
-                <a href="prototype.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">🛠 Prototype Solution</a>
-                <a href="testing.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">📊 Testing & Review</a>
-                <a href="reflection.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">📝 Project Reflection</a>
-            </div>
+        <div id="mobileMenu" class="hidden lg:hidden bg-marine-deep border-t border-white/10 px-4 py-4 space-y-2 uppercase text-xs font-semibold tracking-wider">
+            <a href="#home" class="block hover:text-marine-accent py-2 transition-colors">Home</a>
+            <a href="#fakta" class="block hover:text-marine-accent py-2 transition-colors">Fakta</a>
+            <a href="#target" class="block hover:text-marine-accent py-2 transition-colors">Target</a>
+            <a href="#swot" class="block hover:text-marine-accent py-2 transition-colors">SWOT</a>
+            <a href="#proses" class="block hover:text-marine-accent py-2 transition-colors">Proses</a>
+            <a href="#solusi" class="block hover:text-marine-accent py-2 transition-colors">Solusi</a>
+            <a href="#video-pitch" class="block hover:text-marine-accent py-2 transition-colors">Video Pitch</a>
+            <a href="#refleksi" class="block hover:text-marine-accent py-2 transition-colors">Refleksi</a>
+            <a href="#referensi" class="block hover:text-marine-accent py-2 transition-colors">Referensi</a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <header class="relative bg-gradient-to-br from-marine-deep via-[#1A4B8C] to-marine-teal text-white py-24 px-4 overflow-hidden border-b border-white/10">
-        <!-- Abstract glowing circles -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-marine-cyan/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-marine-teal/20 rounded-full blur-3xl -ml-20 -mb-20"></div>
-        
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/10 border border-white/20 text-marine-accent uppercase tracking-widest mb-6">
-                <span class="w-2 h-2 rounded-full bg-marine-accent animate-pulse"></span> SDG 6 & SDG 14 Synergy Platform
-            </span>
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-8 leading-tight">
-                Platform AI Prediksi Risiko <br>
-                <span class="bg-gradient-to-r from-marine-accent via-cyan-200 to-white bg-clip-text text-transparent">Pengasaman Laut & Konservasi Air</span>
-            </h1>
-            <p class="text-lg md:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed mb-10">
-                Mengintegrasikan teknologi Machine Learning untuk memantau risiko pengasaman air laut di pesisir Jakarta dan mengampanyekan solusi penampungan air hujan demi konservasi air bersih.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="#sdgs" class="w-full sm:w-auto px-8 py-4 bg-marine-cyan hover:bg-cyan-500 text-marine-deep font-bold rounded-xl shadow-lg hover:shadow-cyan-500/30 transform hover:-translate-y-0.5 transition-all text-center">
-                    Eksplorasi 17 SDGs
-                </a>
-                <a href="predict.html" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/30 text-white font-bold rounded-xl transform hover:-translate-y-0.5 transition-all text-center">
-                    Coba AI Predictor
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- MAIN STATS -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white flex items-center space-x-6">
-                <div class="p-4 bg-marine-cyan/10 rounded-xl text-marine-cyan text-3xl">🎯</div>
-                <div>
-                    <h3 class="text-3xl font-extrabold text-marine-deep">17</h3>
-                    <p class="text-slate-500 font-medium text-sm">Tujuan Pembangunan (SDGs)</p>
-                </div>
-            </div>
-            <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white flex items-center space-x-6 border-l-4 border-l-marine-cyan">
-                <div class="p-4 bg-marine-teal/10 rounded-xl text-marine-teal text-3xl">💧</div>
-                <div>
-                    <h3 class="text-3xl font-extrabold text-marine-deep">SDG 6 & 14</h3>
-                    <p class="text-slate-500 font-medium text-sm">Fokus Konservasi & Laut</p>
-                </div>
-            </div>
-            <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white flex items-center space-x-6">
-                <div class="p-4 bg-purple-500/10 rounded-xl text-purple-500 text-3xl">🤖</div>
-                <div>
-                    <h3 class="text-3xl font-extrabold text-marine-deep">Random Forest</h3>
-                    <p class="text-slate-500 font-medium text-sm">Model AI Prediksi Risiko</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: 17 SDGs INTERAKTIF -->
-    <section id="sdgs" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-marine-deep mb-4">17 Sustainable Development Goals (SDGs)</h2>
-            <p class="text-slate-500 max-w-2xl mx-auto">
-                Klik pada kartu SDG untuk melihat detail kontribusi platform kami terhadap pencapaian target tujuan pembangunan global.
-            </p>
-        </div>
-
-        <!-- SDG Cards Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6" id="sdgGrid">
-            <!-- Cartas dynamically created or styled here -->
-        </div>
-
-        <!-- Details Box for SDGs (Dynamically updated) -->
-        <div id="sdgDetailBox" class="mt-12 bg-white p-8 rounded-2xl shadow-lg border border-slate-100 hidden transform transition-all duration-300">
-            <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
-                <img id="sdgDetailImg" src="" alt="SDG Logo" class="w-32 h-32 rounded-xl object-cover bg-slate-50 p-2 shadow-md">
-                <div class="flex-1 text-center md:text-left">
-                    <div class="inline-block px-3 py-1 bg-marine-deep text-white rounded-full text-xs font-bold mb-3" id="sdgDetailNum">SDG 1</div>
-                    <h3 class="text-2xl font-bold text-marine-deep mb-3" id="sdgDetailTitle">Nama SDG</h3>
-                    <p class="text-slate-600 leading-relaxed" id="sdgDetailDesc">Deskripsi SDG dan hubungannya dengan program konservasi air.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: FAKTA KRUSIAL (SDG 6 & 14) -->
-    <section class="bg-gradient-to-b from-white to-marine-light py-20 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-marine-cyan font-bold text-xs uppercase tracking-widest bg-marine-cyan/10 px-3.5 py-1.5 rounded-full">Fakta & Data Empiris</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-marine-deep mt-4">5 Fakta Krusial Air Bersih & Ekosistem Laut</h2>
-                <p class="text-slate-500 max-w-2xl mx-auto mt-2">
-                    Kondisi mendesak di Indonesia yang mendorong inisiatif monitoring dan konservasi air berbasis teknologi.
-                </p>
-            </div>
-
-            <!-- Fakta Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                <!-- Fakta 1 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-xl font-bold mb-6">1</div>
-                        <h4 class="font-bold text-marine-deep mb-2 text-base">Akses Belum Merata</h4>
-                        <p class="text-sm text-slate-500 leading-relaxed">
-                            Akses air minum layak di Indonesia belum merata di berbagai wilayah, terutama pesisir dan pedalaman (Data BPS).
-                        </p>
-                    </div>
-                    <span class="text-xs font-semibold text-orange-500 mt-4 block">BPS Indonesia</span>
-                </div>
-
-                <!-- Fakta 2 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center text-xl font-bold mb-6">2</div>
-                        <h4 class="font-bold text-marine-deep mb-2 text-base">Sungai Tercemar</h4>
-                        <p class="text-sm text-slate-500 leading-relaxed">
-                            Pencemaran sungai yang masif menurunkan kualitas air akibat limbah rumah tangga dan akumulasi mikroplastik.
-                        </p>
-                    </div>
-                    <span class="text-xs font-semibold text-red-500 mt-4 block">LHK / KPL</span>
-                </div>
-
-                <!-- Fakta 3 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-yellow-100 text-yellow-600 flex items-center justify-center text-xl font-bold mb-6">3</div>
-                        <h4 class="font-bold text-marine-deep mb-2 text-base">Sanitasi Buruk</h4>
-                        <p class="text-sm text-slate-500 leading-relaxed">
-                            Sanitasi buruk meningkatkan risiko penyebaran penyakit menular seperti diare dan kolera (Data WHO).
-                        </p>
-                    </div>
-                    <span class="text-xs font-semibold text-yellow-600 mt-4 block">WHO Report</span>
-                </div>
-
-                <!-- Fakta 4 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold mb-6">4</div>
-                        <h4 class="font-bold text-marine-deep mb-2 text-base">Kekeringan Ekstrem</h4>
-                        <p class="text-sm text-slate-500 leading-relaxed">
-                            Perubahan iklim meningkatkan intensitas kekeringan ekstrem di beberapa wilayah di Indonesia.
-                        </p>
-                    </div>
-                    <span class="text-xs font-semibold text-blue-500 mt-4 block">BMKG Indonesia</span>
-                </div>
-
-                <!-- Fakta 5 -->
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl font-bold mb-6">5</div>
-                        <h4 class="font-bold text-marine-deep mb-2 text-base">Konservasi Hujan</h4>
-                        <p class="text-sm text-slate-500 leading-relaxed">
-                            Pemanfaatan penampungan air hujan (PAH) menjadi solusi konservasi air non-konsumsi guna melestarikan ekosistem laut.
-                        </p>
-                    </div>
-                    <span class="text-xs font-semibold text-teal-600 mt-4 block">SDG 6 & 14 Goal</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: LEAN CANVAS & TIMELINE (Nadia's Content) -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-100">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-                <h3 class="text-2xl font-bold text-marine-deep mb-6 flex items-center gap-2">
-                    <span>📋</span> Ringkasan Inisiatif & Referensi
-                </h3>
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 space-y-4">
-                    <p class="text-slate-600 text-sm">
-                        Proyek ini dikembangkan menggunakan kerangka kerja <strong>Design Thinking</strong> untuk memastikan solusi yang diciptakan benar-benar didasarkan pada empati dan pengujian berulang terhadap kebutuhan riil pengguna di Indonesia.
-                    </p>
-                    <div class="pt-4 border-t border-slate-100">
-                        <h4 class="font-bold text-slate-800 text-sm mb-2">Referensi Terkait:</h4>
-                        <ul class="text-xs text-slate-500 space-y-1.5 list-disc pl-4">
-                            <li>United Nations. The 17 Goals. <a href="https://sdgs.un.org/goals" target="_blank" class="text-marine-cyan hover:underline">https://sdgs.un.org/goals</a></li>
-                            <li>United Nations. Sustainable Development Goals. <a href="https://www.un.org/sustainabledevelopment/" target="_blank" class="text-marine-cyan hover:underline">https://www.un.org/sustainabledevelopment/</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <!-- SECTION 1: HOME (HERO & 17 SDGs GRID) -->
+    <section id="home" class="scroll-mt-20">
+        <!-- Hero Banner -->
+        <header class="relative bg-gradient-to-br from-marine-deep via-[#1A4B8C] to-marine-teal text-white py-24 px-4 overflow-hidden border-b border-white/10">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-marine-cyan/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+            <div class="absolute bottom-0 left-0 w-80 h-80 bg-marine-teal/10 rounded-full blur-3xl -ml-20 -mb-20"></div>
             
-            <div>
-                <h3 class="text-2xl font-bold text-marine-deep mb-6 flex items-center gap-2">
-                    <span>🛠</span> Manajemen Proyek
-                </h3>
-                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between h-48">
-                    <p class="text-slate-600 text-sm">
-                        Seluruh proses pengerjaan proyek, mulai dari Empathy, Ideation, hingga Prototype dan Testing dikelola menggunakan Trello Board untuk kolaborasi tim yang transparan.
-                    </p>
-                    <a href="https://trello.com/" target="_blank" class="inline-flex justify-center items-center px-6 py-3 bg-[#0079BF] hover:bg-[#0067A3] text-white font-bold rounded-xl transition shadow-md w-full text-center">
-                        Buka Board Trello Proyek 📋
+            <div class="max-w-5xl mx-auto text-center relative z-10 space-y-8">
+                <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold bg-white/10 border border-white/20 text-marine-accent uppercase tracking-widest">
+                    Agenda Pembangunan Berkelanjutan 2030
+                </span>
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight max-w-4xl mx-auto">
+                    Platform Pemantauan Risiko Pengasaman Laut dan Konservasi Air
+                </h1>
+                <p class="text-sm md:text-base text-slate-200 max-w-3xl mx-auto leading-relaxed">
+                    Integrasi pemantauan digital untuk mendukung SDG 6 (Air Bersih dan Sanitasi Layak) serta SDG 14 (Ekosistem Lautan) melalui pengumpulan bukti empiris dan kalkulasi prediksi parameter air pesisir.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+                    <a href="#sdgs" class="w-full sm:w-auto px-8 py-3.5 bg-marine-cyan hover:bg-cyan-500 text-marine-deep font-bold rounded-xl shadow-md transition text-sm">
+                        Eksplorasi SDGs
+                    </a>
+                    <a href="#solusi" class="w-full sm:w-auto px-8 py-3.5 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold rounded-xl transition text-sm">
+                        Mulai Simulasi Prediksi
                     </a>
                 </div>
             </div>
+        </header>
+
+        <!-- SDGs Grid Section -->
+        <div id="sdgs" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-marine-deep mb-3">Tujuan Pembangunan Berkelanjutan (SDGs) PBB</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto text-xs md:text-sm">
+                    Tinjauan komprehensif terhadap 17 tujuan global. Klik kartu tujuan untuk menampilkan rincian kontribusi platform pemantauan.
+                </p>
+            </div>
+
+            <!-- SDGs Grid (1-17) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5" id="sdgGrid">
+                <!-- Dynamically populated in JS -->
+            </div>
+
+            <!-- Interactive details card -->
+            <div id="sdgDetailBox" class="mt-8 bg-white p-6 rounded-2xl shadow-md border border-slate-100 hidden">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                    <img id="sdgDetailImg" src="" alt="SDG Logo" class="w-24 h-24 rounded-xl object-contain bg-slate-50 p-2 shadow-sm">
+                    <div class="flex-1 text-center sm:text-left space-y-2">
+                        <span class="inline-block px-3 py-1 bg-marine-deep text-white rounded-full text-[10px] font-bold uppercase tracking-wider" id="sdgDetailNum">Tujuan 1</span>
+                        <h3 class="text-lg font-bold text-marine-deep" id="sdgDetailTitle">Nama Tujuan</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed" id="sdgDetailDesc">Deskripsi target pembangunan berkelanjutan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: FAKTA -->
+    <section id="fakta" class="bg-gradient-to-b from-white to-marine-light py-20 border-t border-slate-100 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold text-marine-cyan uppercase tracking-widest bg-marine-cyan/10 px-3 py-1 rounded-full">Kondisi Empiris</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-marine-deep mt-4">5 Fakta Krusial Sanitasi dan Perairan di Indonesia</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto mt-2 text-xs md:text-sm">
+                    Data faktual yang melatarbelakangi urgensi pemantauan kualitas air dan konservasi ekosistem laut.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <!-- Fakta 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
+                    <div class="space-y-4">
+                        <span class="text-xs font-bold text-slate-400">DATA BPS</span>
+                        <h4 class="font-bold text-marine-deep text-sm">Distribusi Air Bersih Belum Merata</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Akses air minum layak di Indonesia belum merata sepenuhnya, terutama di wilayah pesisir terpencil dan daerah pedalaman.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Fakta 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
+                    <div class="space-y-4">
+                        <span class="text-xs font-bold text-slate-400">PENCEMARAN DARATAN</span>
+                        <h4 class="font-bold text-marine-deep text-sm">Penurunan Kualitas Air Sungai</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Tingginya akumulasi limbah domestik rumah tangga dan sampah plastik di perairan tawar menurunkan kualitas fisik dan kimiawi air sungai secara drastis.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Fakta 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
+                    <div class="space-y-4">
+                        <span class="text-xs font-bold text-slate-400">LAPORAN WHO</span>
+                        <h4 class="font-bold text-marine-deep text-sm">Dampak Buruk Sanitasi Kurang Layak</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Buruknya sanitasi lingkungan memicu penularan patogen yang berkolerasi langsung terhadap peningkatan kasus penyakit infeksi saluran pencernaan.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Fakta 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
+                    <div class="space-y-4">
+                        <span class="text-xs font-bold text-slate-400">PERUBAHAN IKLIM</span>
+                        <h4 class="font-bold text-marine-deep text-sm">Kekeringan dan Krisis Air Bersih</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Fenomena iklim ekstrem mempercepat penguapan air permukaan, memicu kekeringan berkepanjangan dan kelangkaan cadangan air tanah bersih di Indonesia.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Fakta 5 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
+                    <div class="space-y-4">
+                        <span class="text-xs font-bold text-slate-400">KONSERVASI MANDIRI</span>
+                        <h4 class="font-bold text-marine-deep text-sm">Penampungan Air Hujan sebagai Solusi</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Pemanfaatan sistem penampung air hujan (PAH) untuk kebutuhan non-konsumsi mampu mengurangi ekstraksi air tanah sekaligus menjaga limpasan sedimen ke laut.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: TARGET -->
+    <section id="target" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-100 scroll-mt-20">
+        <div class="text-center mb-12">
+            <span class="text-xs font-bold text-marine-cyan uppercase tracking-widest bg-marine-cyan/10 px-3 py-1 rounded-full">Target Kunci</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-marine-deep mt-4">Target Kunci Pembangunan Berkelanjutan</h2>
+            <p class="text-slate-500 max-w-2xl mx-auto mt-2 text-xs md:text-sm">
+                Fokus implementasi teknis pada indikator kelestarian air dan perlindungan lautan dari dampak emisi karbon.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Target 6.1 -->
+            <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="w-14 h-14 bg-marine-cyan/10 text-marine-cyan rounded-2xl flex items-center justify-center font-bold text-lg">
+                        6.1
+                    </div>
+                    <h3 class="text-xl font-bold text-marine-deep">Akses Universal Air Minum Aman</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Mencapai akses universal dan merata terhadap air minum yang aman serta terjangkau bagi semua pada tahun 2030. Upaya pemenuhan target ini diintegrasikan melalui kampanye optimalisasi penampungan air sekunder guna mengurangi beban pemakaian air tanah di area perkotaan.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Target 14.3 -->
+            <div class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="w-14 h-14 bg-marine-teal/10 text-marine-teal rounded-2xl flex items-center justify-center font-bold text-lg">
+                        14.3
+                    </div>
+                    <h3 class="text-xl font-bold text-marine-deep">Minimalisasi Dampak Pengasaman Laut</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Mengurangi dan mengatasi dampak pengasaman laut dengan meminimalkan serapan emisi gas karbon lokal oleh perairan laut. Platform ini menyediakan sistem pemodelan numerik interaktif guna menganalisis kontribusi gas CO₂ lokal terhadap penurunan indeks pH perairan Jakarta.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: SWOT -->
+    <section id="swot" class="bg-gradient-to-b from-marine-light to-white py-20 border-t border-slate-100 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold text-marine-cyan uppercase tracking-widest bg-marine-cyan/10 px-3 py-1 rounded-full">Analisis SWOT</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-marine-deep mt-4">Matriks SWOT Analisis Lingkungan</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto mt-2 text-xs md:text-sm">
+                    Konteks strategis pencapaian target SDG 6 dan SDG 14 di wilayah pesisir Indonesia.
+                </p>
+            </div>
+
+            <!-- SWOT Matrix Table -->
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-slate-100 text-left text-xs md:text-sm">
+                        <thead class="bg-marine-deep text-white font-bold uppercase tracking-wider text-[11px]">
+                            <tr>
+                                <th scope="col" class="px-6 py-4 w-1/2 border-r border-white/10">Faktor Internal</th>
+                                <th scope="col" class="px-6 py-4 w-1/2">Faktor Eksternal</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 font-medium">
+                            <tr>
+                                <!-- Strengths -->
+                                <td class="px-6 py-6 bg-slate-50/50 border-r border-slate-100 space-y-2 align-top">
+                                    <span class="inline-block px-2.5 py-1 bg-teal-100 text-teal-800 rounded-md text-[10px] font-extrabold uppercase">Kekuatan (Strengths)</span>
+                                    <p class="text-slate-600 leading-relaxed font-semibold">
+                                        Adanya program pemerintah seperti PAMSIMAS di tingkat pedesaan serta peningkatan kampanye sosialisasi pengurangan sampah plastik domestik.
+                                    </p>
+                                </td>
+                                <!-- Opportunities -->
+                                <td class="px-6 py-6 space-y-2 align-top">
+                                    <span class="inline-block px-2.5 py-1 bg-blue-100 text-blue-800 rounded-md text-[10px] font-extrabold uppercase">Peluang (Opportunities)</span>
+                                    <p class="text-slate-600 leading-relaxed font-semibold">
+                                        Perkembangan teknologi desalinasi dan penyaringan air bersih berefisiensi tinggi serta pemanfaatan pengolahan data digital secara real-time untuk pemantauan parameter lingkungan.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <!-- Weaknesses -->
+                                <td class="px-6 py-6 bg-slate-50/50 border-r border-slate-100 space-y-2 align-top">
+                                    <span class="inline-block px-2.5 py-1 bg-red-100 text-red-800 rounded-md text-[10px] font-extrabold uppercase">Kelemahan (Weaknesses)</span>
+                                    <p class="text-slate-600 leading-relaxed font-semibold">
+                                        Akses infrastruktur distribusi air bersih yang belum merata sepenuhnya serta kurang optimalnya sistem pengolahan limbah industri dan sampah di wilayah daratan.
+                                    </p>
+                                </td>
+                                <!-- Threats -->
+                                <td class="px-6 py-6 space-y-2 align-top">
+                                    <span class="inline-block px-2.5 py-1 bg-orange-100 text-orange-800 rounded-md text-[10px] font-extrabold uppercase">Ancaman (Threats)</span>
+                                    <p class="text-slate-600 leading-relaxed font-semibold">
+                                        Pertumbuhan kepadatan penduduk pesisir yang cepat, pencemaran zat kimia industri yang tidak terkendali, dan akumulasi emisi karbon global yang mempercepat asidifikasi laut.
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: PROSES (SURVEI DASHBOARD) -->
+    <section id="proses" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 scroll-mt-20">
+        <div class="text-center mb-12">
+            <span class="text-xs font-bold text-marine-cyan uppercase tracking-widest bg-marine-cyan/10 px-3 py-1 rounded-full">Metode & Proses</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-marine-deep mt-4">Bukti Empiris Data Survei Masyarakat</h2>
+            <p class="text-slate-500 max-w-2xl mx-auto mt-2 text-xs md:text-sm">
+                Visualisasi data empiris dari 17 responden mengenai isu pengasaman laut (SDG 14) dan kebutuhan kebijakan pengelolaan emisi karbon.
+            </p>
+        </div>
+
+        <!-- 2x2 Grid of Charts -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Chart Q1 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
+                <div class="space-y-1">
+                    <h3 class="font-bold text-marine-deep text-sm">Familiaritas Konsep Pengasaman Laut (Q1)</h3>
+                    <p class="text-[10px] text-slate-400">Skala 1 (Sangat Rendah) hingga Skala 5 (Sangat Tinggi). Mayoritas berada di skala rendah (Skala 2: 47.1%).</p>
+                </div>
+                <div class="h-60 mt-4 relative">
+                    <canvas id="canvas-q1"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart Q2 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
+                <div class="space-y-1">
+                    <h3 class="font-bold text-marine-deep text-sm">Pemahaman Dampak Emisi CO₂ Terhadap pH Air Laut (Q2)</h3>
+                    <p class="text-[10px] text-slate-400">Skala pemahaman dampak emisi gas rumah kaca terhadap perubahan komposisi kimiawi laut (Puncak di Skala 3: 35.3%).</p>
+                </div>
+                <div class="h-60 mt-4 relative">
+                    <canvas id="canvas-q2"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart Q4 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
+                <div class="space-y-1">
+                    <h3 class="font-bold text-marine-deep text-sm">Kekhawatiran Kepunahan Biota Laut (Q4)</h3>
+                    <p class="text-[10px] text-slate-400">Tingkat kecemasan ekologis masyarakat terhadap kerusakan biota laut (Dominan Skala 4 & 5: Total 76.5%).</p>
+                </div>
+                <div class="h-60 mt-4 relative">
+                    <canvas id="canvas-q4"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart Q9 -->
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
+                <div class="space-y-1">
+                    <h3 class="font-bold text-marine-deep text-sm">Urgensi Pengetatan Regulasi Emisi Karbon Pemerintah (Q9)</h3>
+                    <p class="text-[10px] text-slate-400">Pandangan responden terhadap perlunya aturan pemerintah yang tegas mengikat industri besar (Dominan Skala 4 & 5: Total 70.6%).</p>
+                </div>
+                <div class="h-60 mt-4 relative">
+                    <canvas id="canvas-q9"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: SOLUSI (GAP ANALYSIS & SIMULASI PREDIKSI) -->
+    <section id="solusi" class="bg-gradient-to-b from-white to-marine-light py-20 border-t border-slate-100 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <!-- Heading -->
+            <div class="text-center">
+                <span class="text-xs font-bold text-marine-cyan uppercase tracking-widest bg-marine-cyan/10 px-3 py-1 rounded-full">Analisis & Pemodelan</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-marine-deep mt-4">Analisis Kesenjangan Solusi Pasar dan Pemodelan Simulasi</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto mt-2 text-xs md:text-sm">
+                    Tinjauan komparatif terhadap intervensi yang ada di pasar dan kalkulator simulasi risiko perairan laut Teluk Jakarta.
+                </p>
+            </div>
+
+            <!-- Gap Analysis Table -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-marine-deep">Analisis Kesenjangan (Gap Analysis)</h3>
+                <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-slate-100 text-left text-xs md:text-sm">
+                            <thead class="bg-marine-deep text-white font-bold uppercase tracking-wider text-[11px]">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4 border-r border-white/10">Solusi Eksisting</th>
+                                    <th scope="col" class="px-6 py-4 border-r border-white/10">Segmentasi Audiens</th>
+                                    <th scope="col" class="px-6 py-4 border-r border-white/10">Struktur Biaya</th>
+                                    <th scope="col" class="px-6 py-4">Kesenjangan Akses Bagi Nelayan Kecil Tradisional</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 font-medium text-slate-600">
+                                <tr>
+                                    <td class="px-6 py-5 bg-slate-50/50 border-r border-slate-100 font-bold text-marine-deep">Aplikasi Monitoring IoT Komersial</td>
+                                    <td class="px-6 py-5 border-r border-slate-100">Nelayan skala menengah-atas dan industri budidaya laut modern</td>
+                                    <td class="px-6 py-5 border-r border-slate-100">Pembelian alat sensor fisik yang mahal dan biaya langganan software bulanan</td>
+                                    <td class="px-6 py-5">Biaya investasi perangkat keras tidak terjangkau serta keterbatasan literasi teknologi nelayan kecil tradisional.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-5 bg-slate-50/50 border-r border-slate-100 font-bold text-marine-deep">Stasiun Buoy Pemerintah (BMKG/KKP)</td>
+                                    <td class="px-6 py-5 border-r border-slate-100">Instansi pemerintah, akademisi, dan lembaga riset kelautan</td>
+                                    <td class="px-6 py-5 border-r border-slate-100">Didanai APBN nasional dengan pemeliharaan infrastruktur berskala besar</td>
+                                    <td class="px-6 py-5">Penyebaran informasi data buoy sering terlambat dan sulit diakses secara langsung oleh nelayan kecil tradisional di daerah.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-5 bg-slate-50/50 border-r border-slate-100 font-bold text-marine-deep">Restorasi Karang Elektrokalsifikasi</td>
+                                    <td class="px-6 py-5 border-r border-slate-100">Lembaga swadaya masyarakat pariwisata kelautan dan konservasi alam</td>
+                                    <td class="px-6 py-5 border-r border-slate-100">Biaya instalasi elektroda bawah air dan pemenuhan suplai daya konstan tinggi</td>
+                                    <td class="px-6 py-5">Solusi restorasi berfokus jangka panjang dan tidak menyelesaikan masalah penurunan hasil tangkapan jangka pendek nelayan tradisional.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Prediction Module & What-If Simulation -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-6">
+                <!-- Left Control Panel (Sliders) -->
+                <div class="lg:col-span-5 bg-white p-8 rounded-3xl shadow-xl border border-slate-100 space-y-6">
+                    <div>
+                        <h3 class="text-lg font-bold text-marine-deep">Parameter Lingkungan Pesisir</h3>
+                        <p class="text-xs text-slate-400">Atur slider di bawah untuk menyimulasikan pergeseran risiko lingkungan perairan Teluk Jakarta secara langsung.</p>
+                    </div>
+                    
+                    <!-- Nutrient Runoff Slider -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs font-bold text-slate-700">
+                            <label for="slider-runoff">Limpasan Nutrisi Air (Eutrofikasi)</label>
+                            <span id="label-runoff" class="px-2 py-0.5 bg-marine-deep text-white rounded text-[10px]">30 %</span>
+                        </div>
+                        <input type="range" id="slider-runoff" min="0" max="100" value="30" step="1" 
+                               class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer slider-thumb"
+                               oninput="runSimulation()">
+                        <div class="flex justify-between text-[9px] text-slate-400 font-medium">
+                            <span>Sangat Rendah (0%)</span>
+                            <span>Sangat Tinggi (100%)</span>
+                        </div>
+                    </div>
+
+                    <!-- CO2 Slider -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs font-bold text-slate-700">
+                            <label for="slider-co2">Konsentrasi CO₂ Lokal</label>
+                            <span id="label-co2" class="px-2 py-0.5 bg-marine-deep text-white rounded text-[10px]">400 ppm</span>
+                        </div>
+                        <input type="range" id="slider-co2" min="200" max="1000" value="400" step="10" 
+                               class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer slider-thumb"
+                               oninput="runSimulation()">
+                        <div class="flex justify-between text-[9px] text-slate-400 font-medium">
+                            <span>200 ppm (Sangat Rendah)</span>
+                            <span>1000 ppm (Kritis)</span>
+                        </div>
+                    </div>
+
+                    <!-- Temp Slider -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs font-bold text-slate-700">
+                            <label for="slider-temp">Suhu Air Laut Pesisir</label>
+                            <span id="label-temp" class="px-2 py-0.5 bg-marine-deep text-white rounded text-[10px]">27 °C</span>
+                        </div>
+                        <input type="range" id="slider-temp" min="15" max="35" value="27" step="0.5" 
+                               class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer slider-thumb"
+                               oninput="runSimulation()">
+                        <div class="flex justify-between text-[9px] text-slate-400 font-medium">
+                            <span>15°C (Dingin)</span>
+                            <span>35°C (Hangat/Kritis)</span>
+                        </div>
+                    </div>
+
+                    <!-- Industrial Waste Slider -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs font-bold text-slate-700">
+                            <label for="slider-waste">Tingkat Pencemaran Limbah Industri</label>
+                            <span id="label-waste" class="px-2 py-0.5 bg-marine-deep text-white rounded text-[10px]">20 %</span>
+                        </div>
+                        <input type="range" id="slider-waste" min="0" max="100" value="20" step="1" 
+                               class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer slider-thumb"
+                               oninput="runSimulation()">
+                        <div class="flex justify-between text-[9px] text-slate-400 font-medium">
+                            <span>0% (Bebas Polusi)</span>
+                            <span>100% (Polusi Keras)</span>
+                        </div>
+                    </div>
+
+                    <!-- Reset Controls -->
+                    <button onclick="resetParameters()" class="w-full py-2.5 border border-slate-200 hover:bg-slate-50 text-slate-500 font-bold rounded-xl transition text-xs">
+                        Reset Parameter Standard
+                    </button>
+                </div>
+
+                <!-- Right Display Panel -->
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <!-- Real-Time Metrics Card -->
+                    <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+                        <div>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Hasil Prediksi Risiko</span>
+                            <div class="flex items-baseline space-x-1 mt-2">
+                                <span id="val-risk-pct" class="text-5xl font-extrabold text-marine-deep">--</span>
+                                <span class="text-lg font-bold text-slate-400">%</span>
+                            </div>
+                            <span class="text-[10px] text-slate-400 block mt-1">Indeks keparahan asidifikasi pesisir</span>
+                        </div>
+
+                        <!-- Status Alert Card -->
+                        <div class="p-5 rounded-2xl flex flex-col items-center justify-center border text-center transition-colors duration-300" id="card-status">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Status Ancaman</span>
+                            <span id="val-risk-status" class="text-xl font-extrabold text-slate-600">Menghitung...</span>
+                            <div class="w-3 h-3 rounded-full mt-2" id="indicator-status"></div>
+                        </div>
+                    </div>
+
+                    <!-- What-If Graph -->
+                    <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h4 class="font-bold text-marine-deep text-sm">Simulasi "What-If" Risiko vs Emisi CO₂</h4>
+                                <p class="text-[10px] text-slate-400">Garis kurva menunjukkan pergeseran risiko total berdasarkan modifikasi parameter air laut.</p>
+                            </div>
+                            <div id="engine-badge" class="px-2.5 py-1 rounded-full text-[9px] font-bold uppercase border bg-slate-100 text-slate-500 border-slate-200">
+                                Checking...
+                            </div>
+                        </div>
+                        <div class="h-60 relative">
+                            <canvas id="chart-whatif"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Factor Contribution Dashboard -->
+                    <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100">
+                        <h4 class="font-bold text-marine-deep text-sm mb-4">Kontribusi Faktor Terhadap Keputusan Prediksi</h4>
+                        <div class="space-y-3">
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-[11px] font-semibold text-slate-600">
+                                    <span>Konsentrasi Emisi CO₂ Lokal (Kimiawi Laut)</span>
+                                    <span id="weight-co2">40%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                    <div class="bg-[#00ADC6] h-full rounded-full transition-all duration-300" id="bar-co2" style="width: 40%"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-[11px] font-semibold text-slate-600">
+                                    <span>Limpasan Nutrisi Organik (Eutrofikasi)</span>
+                                    <span id="weight-runoff">25%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                    <div class="bg-[#008080] h-full rounded-full transition-all duration-300" id="bar-runoff" style="width: 25%"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-[11px] font-semibold text-slate-600">
+                                    <span>Suhu Air Laut (Faktor Fisik)</span>
+                                    <span id="weight-temp">20%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                    <div class="bg-[#0F2C59] h-full rounded-full transition-all duration-300" id="bar-temp" style="width: 20%"></div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-[11px] font-semibold text-slate-600">
+                                    <span>Tingkat Limbah Kimia Industri (Polusi)</span>
+                                    <span id="weight-waste">15%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                    <div class="bg-red-500 h-full rounded-full transition-all duration-300" id="bar-waste" style="width: 15%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 7: VIDEO PITCH -->
+    <section id="video-pitch" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 scroll-mt-20">
+        <div class="text-center mb-12">
+            <span class="text-xs font-bold text-marine-cyan uppercase tracking-widest bg-marine-cyan/10 px-3 py-1 rounded-full">Video Presentasi</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-marine-deep mt-4">Presentasi Video Solusi Rekayasa</h2>
+            <p class="text-slate-500 max-w-2xl mx-auto mt-2 text-xs md:text-sm">
+                Rekaman pitch presentasi proposal solusi penataan sanitasi perairan dan monitoring pengasaman laut Teluk Jakarta.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Video Player (7 cols) -->
+            <div class="lg:col-span-7 bg-white p-4 rounded-3xl shadow-xl border border-slate-100">
+                <div class="aspect-video bg-slate-100 flex items-center justify-center rounded-2xl border border-slate-200 text-slate-400 text-xs font-bold font-mono">
+                    <!-- Standard video markup, with a placeholder layout -->
+                    <video class="w-full h-full rounded-2xl bg-slate-900 object-cover" controls preload="metadata">
+                        <source src="img/pitch_video.mp4" type="video/mp4">
+                        Presentasi solusi rekayasa lingkungan belum dimuat di perangkat ini.
+                    </video>
+                </div>
+                <div class="mt-4 text-center">
+                    <span class="text-[10px] text-slate-400 font-semibold uppercase">Video Player Standar HTML5</span>
+                </div>
+            </div>
+
+            <!-- Transcript (5 cols) -->
+            <div class="lg:col-span-5 bg-white p-8 rounded-3xl shadow-xl border border-slate-100 space-y-4">
+                <h3 class="text-lg font-bold text-marine-deep border-b border-slate-100 pb-2">Transkrip Narasi Pitch</h3>
+                <div class="h-80 overflow-y-auto text-xs text-slate-500 space-y-4 pr-2 leading-relaxed">
+                    <p>
+                        <strong>Latar Belakang Masalah:</strong> Indonesia menghadapi tantangan ganda dalam pelestarian perairan. Di wilayah daratan pesisir, keterbatasan akses air bersih yang layak di daerah terpencil memicu eksploitasi air tanah secara tidak terkendali. Di wilayah perairan laut, peningkatan emisi gas karbon lokal yang diserap oleh air laut memicu pengasaman (ocean acidification), menurunkan indeks pH laut pesisir dan membahayakan biota karang di wilayah Teluk Jakarta.
+                    </p>
+                    <p>
+                        <strong>Bukti Survei Lapangan:</strong> Pengumpulan data empiris dari 17 responden menunjukkan kesadaran publik mengenai isu kimiawi kelautan ini masih tergolong rendah (sebagian besar berada di skala 2/rendah), meskipun tingkat kekhawatiran ekologis terhadap kerusakan rantai makanan laut berada di skala sangat tinggi (dominan skala 4 dan 5).
+                    </p>
+                    <p>
+                        <strong>Justifikasi Pemilihan Solusi Rekayasa:</strong> Solusi rekayasa yang kami usulkan bersifat komprehensif. Pertama, kami mengintegrasikan alat pemodelan simulasi parameter air secara digital untuk memprediksi probabilitas risiko lingkungan secara real-time. Kedua, kami mempromosikan pemanfaatan sistem penampungan air hujan modular tingkat rumah tangga. Sistem penampung ini mengurangi limpasan permukaan yang membawa polutan zat hara ke laut, sekaligus mengurangi kebutuhan eksploitasi air tanah perkotaan yang memperparah intrusi air laut di daratan pesisir Jakarta.
+                    </p>
+                    <p>
+                        <strong>Metrik Keberhasilan Proyek:</strong> Indikator keberhasilan kami ukur dari tiga aspek. Aspek pertama adalah efisiensi penghematan pemanfaatan air bersih utama hingga mencapai 30% melalui penggunaan air tampungan hujan. Aspek kedua adalah tingkat akurasi model perhitungan simulasi numerik dengan tingkat kesalahan di bawah 15%. Dan aspek ketiga adalah keterjangkauan desain sistem penyaringan agar dapat diterapkan secara mandiri oleh nelayan kecil tradisional.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: REFLEKSI -->
+    <section id="refleksi" class="bg-gradient-to-b from-white to-marine-light py-20 border-t border-slate-100 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="text-center">
+                <span class="text-xs font-bold text-marine-cyan uppercase tracking-widest bg-marine-cyan/10 px-3 py-1 rounded-full">Refleksi</span>
+                <h2 class="text-2xl md:text-3xl font-extrabold text-marine-deep mt-4">Lembar Kerja Refleksi Penerapan Design Thinking</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto mt-2 text-xs md:text-sm">
+                    Dokumentasi penerapan kerangka berpikir Design Thinking dan kontribusi pengolahan data digital terhadap pencapaian target PBB.
+                </p>
+            </div>
+
+            <!-- Design Thinking Stages -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+                <!-- Empathize -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <span class="text-[10px] font-bold text-marine-teal uppercase tracking-wider">Tahap 1</span>
+                    <h3 class="font-bold text-marine-deep mt-1 mb-2 text-sm">Empathize</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Mengumpulkan observasi, wawancara, dan keluhan masyarakat terkait buruknya sanitasi pesisir serta keterbatasan air bersih.
+                    </p>
+                </div>
+
+                <!-- Define -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <span class="text-[10px] font-bold text-marine-teal uppercase tracking-wider">Tahap 2</span>
+                    <h3 class="font-bold text-marine-deep mt-1 mb-2 text-sm">Define</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Merumuskan akar permasalahan berupa ketidakmerataan air layak dan ancaman keasaman laut pesisir Jakarta akibat emisi karbon lokal.
+                    </p>
+                </div>
+
+                <!-- Ideate -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <span class="text-[10px] font-bold text-marine-teal uppercase tracking-wider">Tahap 3</span>
+                    <h3 class="font-bold text-marine-deep mt-1 mb-2 text-sm">Ideate</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Melakukan diskusi curah pendapat (brainstorming) untuk memetakan alternatif solusi mulai dari filter arang hingga instrumen pemantau berbasis web.
+                    </p>
+                </div>
+
+                <!-- Prototype -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <span class="text-[10px] font-bold text-marine-teal uppercase tracking-wider">Tahap 4</span>
+                    <h3 class="font-bold text-marine-deep mt-1 mb-2 text-sm">Prototype</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Membangun sistem penampungan air hujan modular fisik serta platform perangkat lunak simulator prediksi risiko lingkungan.
+                    </p>
+                </div>
+
+                <!-- Testing -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                    <span class="text-[10px] font-bold text-marine-teal uppercase tracking-wider">Tahap 5</span>
+                    <h3 class="font-bold text-marine-deep mt-1 mb-2 text-sm">Testing</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Melakukan validasi efisiensi penghematan pemakaian air sekunder sebesar 30% dan menguji keandalan fungsionalitas visualisasi web.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Role of ML/Data in SDGs -->
+            <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 space-y-4">
+                <h3 class="text-lg font-bold text-marine-deep">Kontribusi Pengolahan Data Digital dan Pemodelan Algoritma</h3>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                    Pengolahan data digital dan pemodelan statistik berbasis web memegang peran sangat penting dalam menyelesaikan tantangan SDGs PBB. Algoritma pemodelan prediktif dapat mengolah multivariabel parameter lingkungan secara serentak (limpasan zat hara, suhu air, limbah industri, dan konsentrasi emisi karbon). Hal ini memungkinkan kita mengestimasi probabilitas bahaya pengasaman laut di Teluk Jakarta secara instan tanpa perlu menunggu analisis laboratorium basah yang lambat dan mahal.
+                </p>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                    Di sisi lain, grafik statistik interaktif yang merepresentasikan data empiris survei tanggapan responden mampu menyederhanakan data angka mentah yang abstrak menjadi pola visual yang intuitif. Hal ini memperjelas gambaran tingkat kesadaran dan kekhawatiran masyarakat, sehingga membantu pihak pengambil kebijakan dan lembaga swadaya masyarakat kelautan merancang strategi kampanye konservasi air yang lebih tepat sasaran.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9: REFERENSI -->
+    <section id="referensi" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 scroll-mt-20 border-t border-slate-100">
+        <div class="text-center mb-12">
+            <span class="text-xs font-bold text-marine-cyan uppercase tracking-widest bg-marine-cyan/10 px-3 py-1 rounded-full">Daftar Pustaka</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-marine-deep mt-4">Referensi Akademik</h2>
+            <p class="text-slate-500 max-w-2xl mx-auto mt-2 text-xs md:text-sm">
+                Daftar rujukan literatur ilmiah dan dokumen resmi instansi yang dirangkum sesuai format penulisan standar APA 7th Edition.
+            </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
+            <ul class="text-xs text-slate-500 space-y-4 divide-y divide-slate-100">
+                <li class="pt-0 pb-3 leading-relaxed">
+                    Badan Pusat Statistik. (2025). <em>Statistik Lingkungan Hidup Indonesia 2024</em>. BPS Indonesia. <a href="https://www.bps.go.id" target="_blank" class="text-marine-cyan hover:underline ml-1">https://www.bps.go.id</a>
+                </li>
+                <li class="pt-3 pb-3 leading-relaxed">
+                    Doney, S. C., Fabry, V. J., Feely, R. A., & Kleypas, J. A. (2009). Ocean acidification: The other CO2 problem. <em>Annual Review of Marine Science</em>, 1(1), 169-192. <a href="https://doi.org/10.1146/annurev.marine.010908.163834" target="_blank" class="text-marine-cyan hover:underline ml-1">https://doi.org/10.1146/annurev.marine.010908.163834</a>
+                </li>
+                <li class="pt-3 pb-3 leading-relaxed">
+                    Feely, R. A., Sabine, C. L., Hernandez-Ayon, J. M., Ianson, D., & Hales, B. (2008). Evidence for upwelling of corrosive "acidified" water onto the continental shelf of western North America. <em>Science</em>, 320(5882), 1490-1492. <a href="https://doi.org/10.1126/science.1155676" target="_blank" class="text-marine-cyan hover:underline ml-1">https://doi.org/10.1126/science.1155676</a>
+                </li>
+                <li class="pt-3 pb-3 leading-relaxed">
+                    United Nations. (2015). <em>Transforming our world: The 2030 Agenda for Sustainable Development</em>. UN Publishing. <a href="https://sdgs.un.org/goals" target="_blank" class="text-marine-cyan hover:underline ml-1">https://sdgs.un.org/goals</a>
+                </li>
+                <li class="pt-3 pb-0 leading-relaxed">
+                    World Health Organization. (2024). <em>Guidelines for drinking-water quality: Fifth edition</em>. WHO Press. <a href="https://www.who.int" target="_blank" class="text-marine-cyan hover:underline ml-1">https://www.who.int</a>
+                </li>
+            </ul>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-marine-deep text-white py-12 mt-auto border-t border-white/10">
+    <footer class="bg-marine-deep text-white py-12 mt-auto border-t border-white/10 text-xs md:text-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div>
-                    <span class="text-xl font-bold text-white tracking-widest uppercase">🌊 AQUA-GUARD AI</span>
-                    <p class="text-xs text-slate-400 mt-2">Mendukung SDG 6 (Air Bersih) & SDG 14 (Ekosistem Laut) dengan Machine Learning</p>
+                <div class="text-center md:text-left space-y-1">
+                    <span class="text-lg font-bold text-white tracking-wider uppercase">Platform Pemantauan Lingkungan</span>
+                    <p class="text-[10px] text-slate-400">Mendukung SDG 6 (Air Bersih) & SDG 14 (Ekosistem Laut) dengan Pemodelan Numerik</p>
                 </div>
-                <div class="text-center md:text-right">
-                    <p class="text-sm text-slate-300">© 2026 Platform Konservasi SDGs - Nadia Artamelina</p>
-                    <p class="text-xs text-slate-500 mt-1">Dikembangkan dengan React/HTML5, Tailwind, Flask, dan Scikit-Learn</p>
+                <div class="text-center md:text-right space-y-1">
+                    <p class="text-slate-300">© 2026 Platform Konservasi SDGs - Nadia Artamelina</p>
+                    <p class="text-[10px] text-slate-500">Dikembangkan menggunakan HTML5, Tailwind, Chart.js, dan Flask/Scikit-Learn</p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- INTERACTIVE JS CODE FOR SDGS GRID -->
+    <!-- INTERACTIVE JS CODE -->
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -338,14 +791,43 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // 17 SDGs Data
-        const sdgs = [
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Active Navigation Scroll Spy
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 120)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('nav-link-active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('nav-link-active');
+                }
+            });
+        });
+
+        // SDGs Data (Complete 17 SDGs without emojis)
+        const sdgsList = [
             { id: 1, name: "Tanpa Kemiskinan", desc: "Mengentaskan segala bentuk kemiskinan di seluruh penjuru dunia." },
             { id: 2, name: "Tanpa Kelaparan", desc: "Mengakhiri kelaparan, mencapai ketahanan pangan, dan meningkatkan gizi berkelanjutan." },
             { id: 3, name: "Kehidupan Sehat & Sejahtera", desc: "Menjamin kehidupan yang sehat dan meningkatkan kesejahteraan bagi semua usia." },
             { id: 4, name: "Pendidikan Berkualitas", desc: "Menjamin pendidikan berkualitas yang inklusif dan merata bagi semua orang." },
             { id: 5, name: "Kesetaraan Gender", desc: "Mencapai kesetaraan gender dan memberdayakan semua perempuan." },
-            { id: 6, name: "Air Bersih & Sanitasi Layak", desc: "Fokus Utama: Memastikan ketersediaan dan pengelolaan air bersih serta sanitasi yang layak dan berkelanjutan bagi semua orang melalui Penampungan Air Hujan (PAH) non-konsumsi.", highlight: true, detail: "Melalui implementasi sistem penampungan air hujan sederhana, masyarakat dapat memanfaatkan air non-konsumsi secara hemat energi dan mengurangi krisis sanitasi di wilayah pemukiman padat penduduk." },
+            { id: 6, name: "Air Bersih & Sanitasi Layak", desc: "Fokus Utama: Memastikan ketersediaan dan pengelolaan air bersih serta sanitasi yang layak dan berkelanjutan bagi semua orang melalui Penampungan Air Hujan (PAH) non-konsumsi.", highlight: true, detail: "Melalui sistem penampungan air hujan, konsumsi sekunder dapat dialihkan sehingga melestarikan cadangan air tanah pesisir." },
             { id: 7, name: "Energi Bersih & Terjangkau", desc: "Menjamin akses energi yang terjangkau, andal, berkelanjutan, dan modern." },
             { id: 8, name: "Pekerjaan Layak & Pertumbuhan Ekonomi", desc: "Meningkatkan pertumbuhan ekonomi yang inklusif dan berkelanjutan, serta pekerjaan yang layak." },
             { id: 9, name: "Industri, Inovasi & Infrastruktur", desc: "Membangun infrastruktur tangguh, meningkatkan industri inklusif, dan mendorong inovasi." },
@@ -353,7 +835,7 @@
             { id: 11, name: "Kota & Permukiman Berkelanjutan", desc: "Menjadikan kota dan permukiman inklusif, aman, tangguh, dan berkelanjutan." },
             { id: 12, name: "Konsumsi & Produksi Bertanggung Jawab", desc: "Menjamin pola konsumsi dan produksi yang berkelanjutan." },
             { id: 13, name: "Penanganan Perubahan Iklim", desc: "Mengambil tindakan cepat untuk mengatasi perubahan iklim dan dampaknya." },
-            { id: 14, name: "Ekosistem Laut (Life Below Water)", desc: "Fokus Utama: Melestarikan dan memanfaatkan samudera, laut, serta sumber daya kelautan secara berkelanjutan dengan memprediksi tingkat pengasaman air akibat emisi CO₂.", highlight: true, detail: "Model AI kami mengintegrasikan data lingkungan lokal (limpasan nutrisi, emisi CO₂ lokal, suhu air, dan limbah industri) untuk memetakan tingkat keparahan risiko pengasaman air laut di Teluk Jakarta secara real-time." },
+            { id: 14, name: "Ekosistem Laut (Life Below Water)", desc: "Fokus Utama: Melestarikan dan memanfaatkan samudera, laut, serta sumber daya kelautan secara berkelanjutan dengan memprediksi tingkat pengasaman air akibat emisi CO₂.", highlight: true, detail: "Platform memetakan dampak limpasan zat hara darat dan emisi CO₂ terhadap kenaikan kadar keasaman air laut pesisir Teluk Jakarta." },
             { id: 15, name: "Ekosistem Daratan", desc: "Melindungi, memulihkan, dan meningkatkan pemanfaatan berkelanjutan ekosistem daratan." },
             { id: 16, name: "Perdamaian, Keadilan & Kelembagaan Tangguh", desc: "Mendorong masyarakat damai dan inklusif untuk pembangunan berkelanjutan." },
             { id: 17, name: "Kemitraan untuk Mencapai Tujuan", desc: "Memperkuat sarana implementasi dan merevitalisasi kemitraan global." }
@@ -366,60 +848,406 @@
         const sdgDetailTitle = document.getElementById('sdgDetailTitle');
         const sdgDetailDesc = document.getElementById('sdgDetailDesc');
 
-        // Render grid cards
-        sdgs.forEach(sdg => {
+        // Populate SDGs Grid
+        sdgsList.forEach(sdg => {
             const card = document.createElement('div');
-            // Check highlights
-            let highlightClasses = "bg-white border border-slate-100 hover:border-marine-accent";
+            let highlightClasses = "bg-white border border-slate-100 hover:border-marine-cyan";
             if (sdg.id === 6) {
-                highlightClasses = "glow-sdg-6 bg-[#E6F8FA] border-2 border-marine-cyan";
+                highlightClasses = "sdg-highlight-6 bg-[#E6F8FA]";
             } else if (sdg.id === 14) {
-                highlightClasses = "glow-sdg-14 bg-[#E6F3F3] border-2 border-marine-teal";
+                highlightClasses = "sdg-highlight-14 bg-[#E6F3F3]";
             }
 
-            card.className = `p-4 rounded-xl cursor-pointer hover-card flex flex-col items-center text-center relative ${highlightClasses}`;
+            card.className = `p-4 rounded-xl cursor-pointer transition-all duration-300 flex flex-col items-center text-center relative hover:-translate-y-1 hover:shadow-md ${highlightClasses}`;
             card.id = `sdg-card-${sdg.id}`;
             card.innerHTML = `
-                <div class="absolute top-2 left-2 text-xs font-bold text-slate-400">#${sdg.id}</div>
-                <img src="img/${sdg.id}.png" alt="${sdg.name}" class="w-16 h-16 object-contain mb-3 mt-2" onerror="this.src='https://placehold.co/100x100/0F2C59/FFFFFF?text=SDG+${sdg.id}'">
-                <h4 class="font-bold text-xs leading-snug text-marine-deep">${sdg.name}</h4>
-                ${sdg.highlight ? `<span class="mt-2 text-[10px] font-extrabold tracking-wider bg-marine-teal text-white px-2 py-0.5 rounded-full uppercase">Fokus AI</span>` : ''}
+                <div class="absolute top-2 left-2 text-[9px] font-bold text-slate-400">Tujuan ${sdg.id}</div>
+                <img src="img/${sdg.id}.png" alt="${sdg.name}" class="w-14 h-14 object-contain mb-3 mt-2" onerror="this.src='https://placehold.co/100x100/0F2C59/FFFFFF?text=SDG+${sdg.id}'">
+                <h4 class="font-bold text-[10px] leading-snug text-marine-deep">${sdg.name}</h4>
+                ${sdg.highlight ? `<span class="mt-2 text-[8px] font-extrabold tracking-widest bg-marine-teal text-white px-2 py-0.5 rounded-full uppercase">Fokus Utama</span>` : ''}
             `;
 
-            // Click event to show detail box
             card.addEventListener('click', () => {
-                // Remove highlight from previous cards
                 document.querySelectorAll('#sdgGrid > div').forEach(c => {
-                    c.classList.remove('ring-4', 'ring-marine-accent/30');
+                    c.classList.remove('ring-2', 'ring-marine-accent');
                 });
-                card.classList.add('ring-4', 'ring-marine-accent/30');
+                card.classList.add('ring-2', 'ring-marine-accent');
 
-                // Update detail contents
                 sdgDetailImg.src = `img/${sdg.id}.png`;
-                sdgDetailImg.onerror = function() { this.src = `https://placehold.co/200x200/0F2C59/FFFFFF?text=SDG+${sdg.id}`; };
-                sdgDetailNum.textContent = `GOAL ${sdg.id}`;
+                sdgDetailImg.onerror = function() { this.src = `https://placehold.co/100x100/0F2C59/FFFFFF?text=SDG+${sdg.id}`; };
+                sdgDetailNum.textContent = `Tujuan ${sdg.id}`;
                 sdgDetailTitle.textContent = sdg.name;
                 
-                // If it's a focus SDG, append the detailed context
-                let description = sdg.desc;
+                let descText = sdg.desc;
                 if (sdg.detail) {
-                    description += `<br><br><strong class="text-marine-deep">Kontribusi Platform:</strong> ${sdg.detail}`;
+                    descText += ` <strong>Relevansi Platform:</strong> ${sdg.detail}`;
                 }
-                sdgDetailDesc.innerHTML = description;
-
-                // Show box
+                sdgDetailDesc.innerHTML = descText;
                 sdgDetailBox.classList.remove('hidden');
+                
+                // Smooth scroll to details
                 sdgDetailBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             });
 
             sdgGrid.appendChild(card);
         });
 
-        // Trigger click on SDG 6 by default
+        // Show SDG 6 by default
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 document.getElementById('sdg-card-6').click();
             }, 100);
+        });
+
+        // ------------------ SECTION 5: CHART.JS SURVEI DATA ------------------
+        const surveyColors = {
+            main: 'rgba(0, 173, 198, 0.65)',
+            border: '#00ADC6',
+            teal: 'rgba(0, 128, 128, 0.65)',
+            tealBorder: '#008080',
+            deep: 'rgba(15, 44, 89, 0.65)',
+            deepBorder: '#0F2C59',
+            orange: 'rgba(249, 115, 22, 0.65)',
+            orangeBorder: '#F97316'
+        };
+
+        const surveyLabels = ['Skala 1', 'Skala 2', 'Skala 3', 'Skala 4', 'Skala 5'];
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(ctx) {
+                            const val = ctx.parsed.y;
+                            const pct = ((val / 17) * 100).toFixed(1);
+                            return ` Responden: ${val} orang (${pct}%)`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 10,
+                    ticks: { stepSize: 1, font: { family: 'Plus Jakarta Sans', size: 9 } },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
+                },
+                x: {
+                    ticks: { font: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' } },
+                    grid: { display: false }
+                }
+            }
+        };
+
+        // Render Q1 Chart
+        new Chart(document.getElementById('canvas-q1').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: surveyLabels,
+                datasets: [{
+                    data: [3, 8, 4, 1, 1], // Q1: 47.1% (8 respondents) at scale 2
+                    backgroundColor: surveyColors.main,
+                    borderColor: surveyColors.border,
+                    borderWidth: 1.5,
+                    borderRadius: 6
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Render Q2 Chart
+        new Chart(document.getElementById('canvas-q2').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: surveyLabels,
+                datasets: [{
+                    data: [1, 4, 6, 4, 2], // Q2: 35.3% (6 respondents) at scale 3
+                    backgroundColor: surveyColors.teal,
+                    borderColor: surveyColors.tealBorder,
+                    borderWidth: 1.5,
+                    borderRadius: 6
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Render Q4 Chart
+        new Chart(document.getElementById('canvas-q4').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: surveyLabels,
+                datasets: [{
+                    data: [0, 1, 3, 8, 5], // Q4: 47.1% (8) at scale 4, 29.4% (5) at scale 5
+                    backgroundColor: surveyColors.orange,
+                    borderColor: surveyColors.orangeBorder,
+                    borderWidth: 1.5,
+                    borderRadius: 6
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Render Q9 Chart
+        new Chart(document.getElementById('canvas-q9').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: surveyLabels,
+                datasets: [{
+                    data: [0, 2, 3, 6, 6], // Q9: 35.3% (6) at scale 4, 35.3% (6) at scale 5
+                    backgroundColor: surveyColors.deep,
+                    borderColor: surveyColors.deepBorder,
+                    borderWidth: 1.5,
+                    borderRadius: 6
+                }]
+            },
+            options: chartOptions
+        });
+
+        // ------------------ SECTION 6: RISK PREDICTOR & DUAL-ENGINE ------------------
+        const API_URL = 'http://127.0.0.1:5000/predict';
+        const HEALTH_URL = 'http://127.0.0.1:5000/health';
+        
+        let predictionEngine = 'checking'; // 'online', 'offline'
+        let whatIfChart = null;
+
+        // Reset inputs
+        function resetParameters() {
+            document.getElementById('slider-runoff').value = 30;
+            document.getElementById('slider-co2').value = 400;
+            document.getElementById('slider-temp').value = 27;
+            document.getElementById('slider-waste').value = 20;
+            runSimulation();
+        }
+
+        // Connection checker
+        async function checkConnection() {
+            const badge = document.getElementById('engine-badge');
+            try {
+                const res = await fetch(HEALTH_URL, { method: 'GET', mode: 'cors' });
+                const data = await res.json();
+                if (data.status === 'healthy') {
+                    predictionEngine = 'online';
+                    badge.className = 'px-2.5 py-1 rounded-full text-[9px] font-bold uppercase border bg-teal-50 text-teal-600 border-teal-200';
+                    badge.textContent = 'Server Online';
+                } else {
+                    throw new Error();
+                }
+            } catch (e) {
+                predictionEngine = 'offline';
+                badge.className = 'px-2.5 py-1 rounded-full text-[9px] font-bold uppercase border bg-slate-50 text-slate-500 border-slate-200';
+                badge.textContent = 'Engine Lokal';
+            }
+            runSimulation();
+        }
+
+        // Local math formulas representing trained regression model
+        function runLocalPrediction(runoff, co2, temp, waste) {
+            const co2_norm = (co2 - 200) / 800;
+            const runoff_norm = runoff / 100;
+            const temp_norm = (temp - 15) / 20;
+            const waste_norm = waste / 100;
+
+            // Logarithmic/Exponential approximation of ocean pH decline vs risk
+            const co2_factor = Math.pow(co2_norm, 1.25);
+
+            let risk = (
+                0.40 * co2_factor +
+                0.25 * runoff_norm +
+                0.20 * temp_norm +
+                0.15 * waste_norm
+            ) * 100;
+
+            risk = Math.max(0.0, Math.min(100.0, risk));
+
+            let status = "Rendah (Low)";
+            if (risk >= 70.0) {
+                status = "Kritis (Critical)";
+            } else if (risk >= 35.0) {
+                status = "Sedang (Medium)";
+            }
+
+            return {
+                risk_probability: Math.round(risk * 100) / 100,
+                status: status,
+                feature_importances: {
+                    co2_emissions: 0.40,
+                    nutrient_runoff: 0.25,
+                    water_temp: 0.20,
+                    industrial_waste: 0.15
+                }
+            };
+        }
+
+        // Run simulation
+        async function runSimulation() {
+            const runoff = parseFloat(document.getElementById('slider-runoff').value);
+            const co2 = parseFloat(document.getElementById('slider-co2').value);
+            const temp = parseFloat(document.getElementById('slider-temp').value);
+            const waste = parseFloat(document.getElementById('slider-waste').value);
+
+            // Update Labels
+            document.getElementById('label-runoff').textContent = runoff + ' %';
+            document.getElementById('label-co2').textContent = co2 + ' ppm';
+            document.getElementById('label-temp').textContent = temp + ' °C';
+            document.getElementById('label-waste').textContent = waste + ' %';
+
+            let result;
+            if (predictionEngine === 'online') {
+                try {
+                    const res = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            nutrient_runoff: runoff,
+                            co2_emissions: co2,
+                            water_temp: temp,
+                            industrial_waste: waste
+                        })
+                    });
+                    if (res.ok) {
+                        result = await res.json();
+                    } else {
+                        throw new Error();
+                    }
+                } catch (e) {
+                    result = runLocalPrediction(runoff, co2, temp, waste);
+                }
+            } else {
+                result = runLocalPrediction(runoff, co2, temp, waste);
+            }
+
+            // Render Output Probability
+            document.getElementById('val-risk-pct').textContent = result.risk_probability.toFixed(1);
+
+            // Render Status Card Color & Labels
+            const statusCard = document.getElementById('card-status');
+            const statusText = document.getElementById('val-risk-status');
+            const statusIndicator = document.getElementById('indicator-status');
+
+            statusText.textContent = result.status;
+            
+            if (result.status.includes('Critical') || result.status.includes('Kritis')) {
+                statusCard.className = 'p-5 rounded-2xl flex flex-col items-center justify-center border text-center transition-colors duration-300 border-red-200 bg-red-50 text-red-950';
+                statusIndicator.className = 'w-3.5 h-3.5 rounded-full mt-2 bg-red-600 animate-pulse';
+            } else if (result.status.includes('Medium') || result.status.includes('Sedang')) {
+                statusCard.className = 'p-5 rounded-2xl flex flex-col items-center justify-center border text-center transition-colors duration-300 border-orange-200 bg-orange-50 text-orange-950';
+                statusIndicator.className = 'w-3.5 h-3.5 rounded-full mt-2 bg-orange-500 animate-pulse';
+            } else {
+                statusCard.className = 'p-5 rounded-2xl flex flex-col items-center justify-center border text-center transition-colors duration-300 border-teal-200 bg-teal-50 text-teal-950';
+                statusIndicator.className = 'w-3.5 h-3.5 rounded-full mt-2 bg-teal-600';
+            }
+
+            // Draw/Update line graph
+            updateLineGraph(runoff, temp, waste, co2);
+
+            // Update Contributor Weights
+            const w = result.feature_importances;
+            const sum = w.co2_emissions + w.nutrient_runoff + w.water_temp + w.industrial_waste;
+            const co2_p = Math.round((w.co2_emissions / sum) * 100);
+            const runoff_p = Math.round((w.nutrient_runoff / sum) * 100);
+            const temp_p = Math.round((w.water_temp / sum) * 100);
+            const waste_p = Math.round((w.industrial_waste / sum) * 100);
+
+            document.getElementById('weight-co2').textContent = co2_p + '%';
+            document.getElementById('bar-co2').style.width = co2_p + '%';
+
+            document.getElementById('weight-runoff').textContent = runoff_p + '%';
+            document.getElementById('bar-runoff').style.width = runoff_p + '%';
+
+            document.getElementById('weight-temp').textContent = temp_p + '%';
+            document.getElementById('bar-temp').style.width = temp_p + '%';
+
+            document.getElementById('weight-waste').textContent = waste_p + '%';
+            document.getElementById('bar-waste').style.width = waste_p + '%';
+        }
+
+        // Draw Line Chart
+        function updateLineGraph(runoff, temp, waste, selectedCO2) {
+            const co2Buckets = [200, 300, 400, 500, 600, 700, 800, 900, 1000];
+            const riskPoints = co2Buckets.map(c => {
+                return runLocalPrediction(runoff, c, temp, waste).risk_probability;
+            });
+            const selectedRisk = runLocalPrediction(runoff, selectedCO2, temp, waste).risk_probability;
+
+            const ctx = document.getElementById('chart-whatif').getContext('2d');
+
+            if (whatIfChart) {
+                // Update datasets
+                whatIfChart.data.datasets[0].data = riskPoints;
+                whatIfChart.data.datasets[1].data = co2Buckets.map(c => {
+                    return Math.abs(c - selectedCO2) < 49 ? selectedRisk : null;
+                });
+                whatIfChart.update('none'); // Silent update for slider fluidity
+            } else {
+                // Initialize
+                whatIfChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: co2Buckets,
+                        datasets: [
+                            {
+                                label: 'Kurva Tren Risiko Teluk Jakarta',
+                                data: riskPoints,
+                                borderColor: '#00ADC6',
+                                borderWidth: 2.5,
+                                fill: false,
+                                tension: 0.25,
+                                pointRadius: 0
+                            },
+                            {
+                                label: 'Kondisi Operasional Saat Ini',
+                                data: co2Buckets.map(c => c === selectedCO2 ? selectedRisk : null),
+                                backgroundColor: '#EF4444',
+                                borderColor: '#FFFFFF',
+                                borderWidth: 1.5,
+                                pointRadius: 7,
+                                pointHoverRadius: 9,
+                                showLine: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: { font: { family: 'Plus Jakarta Sans', size: 10 } }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                min: 0,
+                                max: 100,
+                                ticks: { font: { family: 'Plus Jakarta Sans', size: 9 } },
+                                grid: { color: 'rgba(0,0,0,0.03)' },
+                                title: {
+                                    display: true,
+                                    text: 'Risiko Kerusakan (%)',
+                                    font: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' }
+                                }
+                            },
+                            x: {
+                                ticks: { font: { family: 'Plus Jakarta Sans', size: 9 } },
+                                grid: { display: false },
+                                title: {
+                                    display: true,
+                                    text: 'Emisi CO₂ (ppm)',
+                                    font: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize script logic
+        window.addEventListener('DOMContentLoaded', () => {
+            checkConnection();
         });
     </script>
 </body>
