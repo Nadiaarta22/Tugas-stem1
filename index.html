@@ -354,10 +354,9 @@
         const modalImage = document.getElementById('modalImage');
         const closeModalButton = document.getElementById('closeModal');
 
-        galleryGrid.innerHTML = galleryImages.map((image, index) => `
+        galleryGrid.innerHTML = galleryImages.map((image) => `
             <button type="button" class="gallery-card" data-src="${image.src}" data-alt="${image.alt}">
                 <img src="${image.src}" alt="${image.alt}">
-                <div class="gallery-caption">Foto ${index + 1}</div>
             </button>
         `).join('');
 
