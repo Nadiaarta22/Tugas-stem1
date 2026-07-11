@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Predictor & Simulation - Pengasaman Laut</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        marine: {
+                            deep: '#0F2C59',
+                            cyan: '#00ADC6',
+                            teal: '#008080',
+                            light: '#F4F7FB',
+                            accent: '#38BDF8',
+                            darkTeal: '#0D5F60'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        .glass-nav {
+            background: rgba(15, 44, 89, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00ADC6;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 173, 198, 0.5);
+            transition: transform 0.1s;
+        }
+        .slider-thumb::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body class="bg-marine-light text-slate-800 font-sans min-h-screen flex flex-col">
+
+    <!-- TOP NAVBAR -->
+    <nav class="glass-nav text-white sticky top-0 z-50 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">🌊</span>
+                    <span class="font-extrabold text-xl tracking-wider bg-gradient-to-r from-marine-accent to-cyan-300 bg-clip-text text-transparent">AQUA-GUARD AI</span>
+                </div>
+                
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center space-x-8 font-medium">
+                    <a href="index.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">Home / SDGs</a>
+                    <a href="dashboard.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">Survei Dashboard</a>
+                    <a href="predict.html" class="text-marine-accent border-b-2 border-marine-accent px-1 py-2 text-sm transition-colors duration-200">AI Predictor & Simulation</a>
+                    
+                    <!-- Dropdown Design Thinking -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 hover:text-marine-accent transition px-1 py-2 text-sm focus:outline-none" id="dtDropdownBtn">
+                            <span>Design Thinking</span>
+                            <svg class="w-4 h-4 fill-current transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20">
+                                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-52 bg-marine-deep text-white rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-white/10 overflow-hidden py-1">
+                            <a href="empathy.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">🔍 Empathy & Research</a>
+                            <a href="ideation.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">💡 Ideation Process</a>
+                            <a href="prototype.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">🛠 Prototype Solution</a>
+                            <a href="testing.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">📊 Testing & Review</a>
+                            <a href="reflection.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">📝 Project Reflection</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-white hover:text-marine-accent focus:outline-none p-2 rounded-lg bg-white/5 border border-white/10">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-marine-deep border-t border-white/10 px-4 py-4 space-y-3">
+            <a href="index.html" class="block hover:text-marine-accent text-base py-2 transition-colors">Home / SDGs</a>
+            <a href="dashboard.html" class="block hover:text-marine-accent text-base py-2 transition-colors">Survei Dashboard</a>
+            <a href="predict.html" class="block text-marine-accent font-semibold text-base py-2">AI Predictor & Simulation</a>
+            <div class="pt-2 border-t border-white/5">
+                <span class="block text-slate-400 text-xs uppercase tracking-wider mb-2">Design Thinking Process</span>
+                <a href="empathy.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">🔍 Empathy & Research</a>
+                <a href="ideation.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">💡 Ideation Process</a>
+                <a href="prototype.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">🛠 Prototype Solution</a>
+                <a href="testing.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">📊 Testing & Review</a>
+                <a href="reflection.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">📝 Project Reflection</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="bg-gradient-to-r from-marine-deep to-marine-teal text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto text-center md:text-left flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-2">AI Predictor & Simulasi Interaktif</h1>
+                <p class="text-slate-200 max-w-2xl text-sm md:text-base">
+                    Simulasikan parameter lingkungan pesisir secara real-time dan analisis risikonya terhadap pengasaman laut di Teluk Jakarta menggunakan model Machine Learning.
+                </p>
+            </div>
+            
+            <!-- Connection Mode Badge -->
+            <div class="self-center md:self-auto">
+                <div id="connectionBadge" class="px-5 py-3 rounded-2xl font-bold text-xs uppercase tracking-wider bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 flex items-center space-x-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-ping"></span>
+                    <span>Checking AI Engine...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN INTERACTIVE SECTION -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-1">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- LEFT PANEL: SLIDERS & CONTROLS (5 COLS) -->
+            <div class="lg:col-span-5 bg-white p-8 rounded-3xl shadow-xl border border-slate-100 space-y-8">
+                <div>
+                    <h3 class="text-xl font-extrabold text-marine-deep mb-1">Parameter Lingkungan</h3>
+                    <p class="text-xs text-slate-400">Geser slider di bawah ini untuk mensimulasikan kondisi air di Teluk Jakarta.</p>
+                </div>
+                
+                <!-- CO2 Emissions Slider -->
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <label class="text-sm font-bold text-slate-700 flex items-center gap-1.5" for="input-co2">
+                            <span>🏭</span> Emisi CO₂ Lokal (Konsentrasi)
+                        </label>
+                        <span id="value-co2" class="px-2.5 py-1 bg-marine-deep text-white font-bold text-xs rounded-lg">400 ppm</span>
+                    </div>
+                    <input type="range" id="input-co2" min="200" max="1000" value="400" step="10" 
+                           class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer slider-thumb"
+                           oninput="updateSimulation()">
+                    <div class="flex justify-between text-[10px] text-slate-400 font-semibold">
+                        <span>200 ppm (Sangat Bersih)</span>
+                        <span>1000 ppm (Kritis)</span>
+                    </div>
+                </div>
+
+                <!-- Nutrient Runoff Slider -->
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <label class="text-sm font-bold text-slate-700 flex items-center gap-1.5" for="input-runoff">
+                            <span>🌱</span> Limpasan Nutrisi (RT & Pupuk)
+                        </label>
+                        <span id="value-runoff" class="px-2.5 py-1 bg-marine-deep text-white font-bold text-xs rounded-lg">30%</span>
+                    </div>
+                    <input type="range" id="input-runoff" min="0" max="100" value="30" step="1" 
+                           class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer slider-thumb"
+                           oninput="updateSimulation()">
+                    <div class="flex justify-between text-[10px] text-slate-400 font-semibold">
+                        <span>0% (Sangat Sedikit)</span>
+                        <span>100% (Sangat Tinggi)</span>
+                    </div>
+                </div>
+
+                <!-- Water Temperature Slider -->
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <label class="text-sm font-bold text-slate-700 flex items-center gap-1.5" for="input-temp">
+                            <span>🌡</span> Suhu Air Laut
+                        </label>
+                        <span id="value-temp" class="px-2.5 py-1 bg-marine-deep text-white font-bold text-xs rounded-lg">27 °C</span>
+                    </div>
+                    <input type="range" id="input-temp" min="15" max="35" value="27" step="0.5" 
+                           class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer slider-thumb"
+                           oninput="updateSimulation()">
+                    <div class="flex justify-between text-[10px] text-slate-400 font-semibold">
+                        <span>15°C (Dingin)</span>
+                        <span>35°C (Hangat/Kritis)</span>
+                    </div>
+                </div>
+
+                <!-- Industrial Waste Slider -->
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <label class="text-sm font-bold text-slate-700 flex items-center gap-1.5" for="input-waste">
+                            <span>🛢</span> Tingkat Limbah Industri
+                        </label>
+                        <span id="value-waste" class="px-2.5 py-1 bg-marine-deep text-white font-bold text-xs rounded-lg">20%</span>
+                    </div>
+                    <input type="range" id="input-waste" min="0" max="100" value="20" step="1" 
+                           class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer slider-thumb"
+                           oninput="updateSimulation()">
+                    <div class="flex justify-between text-[10px] text-slate-400 font-semibold">
+                        <span>0% (Bebas Limbah)</span>
+                        <span>100% (Polusi Keras)</span>
+                    </div>
+                </div>
+
+                <!-- Reset Button -->
+                <button onclick="resetSliders()" class="w-full py-3 border border-slate-200 hover:bg-slate-50 text-slate-500 font-bold rounded-xl transition text-sm">
+                    🔄 Reset Parameter ke Standar
+                </button>
+            </div>
+
+            <!-- RIGHT PANEL: PREDICTIONS & CHARTS (7 COLS) -->
+            <div class="lg:col-span-7 space-y-8">
+                
+                <!-- PREDICTION RESULT HIGHLIGHT CARD -->
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-lg font-extrabold text-slate-500 uppercase tracking-wider">Hasil Prediksi AI</h3>
+                        <div class="flex items-baseline space-x-2 mt-4">
+                            <span id="resultProbability" class="text-6xl font-extrabold text-marine-deep">--</span>
+                            <span class="text-2xl font-bold text-slate-400">%</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-2">Probabilitas Risiko Kerusakan Lingkungan & Pengasaman</p>
+                    </div>
+
+                    <!-- Status Display -->
+                    <div class="text-center p-6 rounded-2xl flex flex-col items-center justify-center border transition-all duration-300" id="statusCard">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Status Risiko</span>
+                        <span id="resultStatus" class="text-2xl font-extrabold text-slate-500">Menghitung...</span>
+                        <div class="w-3.5 h-3.5 rounded-full mt-3 animate-pulse" id="statusIndicator"></div>
+                    </div>
+                </div>
+
+                <!-- WHAT-IF SIMULATION GRAPH CARD -->
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-lg font-extrabold text-marine-deep">Simulasi "What-If" Risiko vs Emisi CO₂</h3>
+                            <p class="text-xs text-slate-400">Kurva risiko bergeser dinamis mengikuti perubahan parameter lingkungan lainnya.</p>
+                        </div>
+                        <div class="w-4 h-4 rounded-full bg-marine-cyan animate-pulse"></div>
+                    </div>
+                    <div class="h-72 relative">
+                        <canvas id="whatIfChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- CONTROLLER FACTOR CONTRIBUTION CARD -->
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100">
+                    <h3 class="text-lg font-extrabold text-marine-deep mb-6">Dashboard Bobot Kontribusi Faktor AI</h3>
+                    
+                    <div class="space-y-4">
+                        <!-- CO2 -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-bold text-slate-600">
+                                <span>Emisi CO₂ Lokal (Acidification Inducer)</span>
+                                <span id="weight-co2-pct">40%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                                <div class="bg-[#00ADC6] h-full rounded-full transition-all duration-300" id="weight-co2-bar" style="width: 40%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Runoff -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-bold text-slate-600">
+                                <span>Limpasan Nutrisi (Algae Bloom/Eutrophication)</span>
+                                <span id="weight-runoff-pct">25%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                                <div class="bg-[#008080] h-full rounded-full transition-all duration-300" id="weight-runoff-bar" style="width: 25%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Temp -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-bold text-slate-600">
+                                <span>Suhu Air Laut (Coral Bleaching Catalyst)</span>
+                                <span id="weight-temp-pct">20%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                                <div class="bg-[#0F2C59] h-full rounded-full transition-all duration-300" id="weight-temp-bar" style="width: 20%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Waste -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-bold text-slate-600">
+                                <span>Tingkat Limbah Industri (Chemical Pollution)</span>
+                                <span id="weight-waste-pct">15%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                                <div class="bg-[#EF4444] h-full rounded-full transition-all duration-300" id="weight-waste-bar" style="width: 15%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-marine-deep text-white py-12 mt-auto border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <span class="text-xl font-bold text-white tracking-widest uppercase">🌊 AQUA-GUARD AI</span>
+                    <p class="text-xs text-slate-400 mt-2">Mendukung SDG 6 (Air Bersih) & SDG 14 (Ekosistem Laut) dengan Machine Learning</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-sm text-slate-300">© 2026 Platform Konservasi SDGs - Nadia Artamelina</p>
+                    <p class="text-xs text-slate-500 mt-1">Dikembangkan dengan React/HTML5, Tailwind, Flask, dan Scikit-Learn</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGIC FOR AI ENGINE & DUAL ENGINE SIMULATION -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Config variables
+        const API_URL = 'http://127.0.0.1:5000/predict';
+        const HEALTH_URL = 'http://127.0.0.1:5000/health';
+        
+        let aiMode = 'checking'; // 'checking', 'online', 'offline'
+        let whatIfChartInstance = null;
+
+        // Reset all sliders
+        function resetSliders() {
+            document.getElementById('input-co2').value = 400;
+            document.getElementById('input-runoff').value = 30;
+            document.getElementById('input-temp').value = 27;
+            document.getElementById('input-waste').value = 20;
+            updateSimulation();
+        }
+
+        // Initialize engine check
+        async function checkAIEngine() {
+            const badge = document.getElementById('connectionBadge');
+            try {
+                const response = await fetch(HEALTH_URL, { method: 'GET', mode: 'cors' });
+                const data = await response.json();
+                if (data.status === 'healthy') {
+                    aiMode = 'online';
+                    badge.className = 'px-5 py-3 rounded-2xl font-bold text-xs uppercase tracking-wider bg-teal-500/20 text-teal-300 border border-teal-500/30 flex items-center space-x-2';
+                    badge.innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-teal-400"></span><span>Server Mode (Flask Online)</span>';
+                } else {
+                    throw new Error('Server not fully ready');
+                }
+            } catch (e) {
+                aiMode = 'offline';
+                badge.className = 'px-5 py-3 rounded-2xl font-bold text-xs uppercase tracking-wider bg-slate-500/20 text-slate-400 border border-slate-500/30 flex items-center space-x-2';
+                badge.innerHTML = '<span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span><span>Client Mode (JS Engine Active)</span>';
+            }
+            // Trigger first prediction run
+            updateSimulation();
+        }
+
+        // Local AI Prediction engine (Fallback)
+        function clientPredict(runoff, co2, temp, waste) {
+            // Normalize inputs according to our Python dataset generation
+            const co2_norm = (co2 - 200) / 800;
+            const runoff_norm = runoff / 100;
+            const temp_norm = (temp - 15) / 20;
+            const waste_norm = waste / 100;
+            
+            // Logarithmic/Power response for CO2 to represent non-linear pH relationships
+            const co2_factor = Math.pow(co2_norm, 1.25);
+
+            // Compute risk probability
+            let risk = (
+                0.40 * co2_factor +
+                0.25 * runoff_norm +
+                0.20 * temp_norm +
+                0.15 * waste_norm
+            ) * 100;
+
+            // Clip risk to 0-100
+            risk = Math.max(0.0, Math.min(100.0, risk));
+
+            let status = 'Rendah (Low)';
+            if (risk >= 70.0) {
+                status = 'Kritis (Critical)';
+            } else if (risk >= 35.0) {
+                status = 'Sedang (Medium)';
+            }
+
+            return {
+                risk_probability: Math.round(risk * 100) / 100,
+                status: status,
+                feature_importances: {
+                    co2_emissions: 0.40,
+                    nutrient_runoff: 0.25,
+                    water_temp: 0.20,
+                    industrial_waste: 0.15
+                }
+            };
+        }
+
+        // Send API request or run local predictor
+        async function fetchPrediction(runoff, co2, temp, waste) {
+            if (aiMode === 'online') {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            nutrient_runoff: runoff,
+                            co2_emissions: co2,
+                            water_temp: temp,
+                            industrial_waste: waste
+                        })
+                    });
+                    if (response.ok) {
+                        return await response.json();
+                    }
+                    throw new Error('API predict failed, falling back to local JS');
+                } catch (err) {
+                    console.warn(err);
+                    return clientPredict(runoff, co2, temp, waste);
+                }
+            } else {
+                return clientPredict(runoff, co2, temp, waste);
+            }
+        }
+
+        // Update UI and trigger graph updates
+        async function updateSimulation() {
+            // Read values
+            const co2 = parseFloat(document.getElementById('input-co2').value);
+            const runoff = parseFloat(document.getElementById('input-runoff').value);
+            const temp = parseFloat(document.getElementById('input-temp').value);
+            const waste = parseFloat(document.getElementById('input-waste').value);
+
+            // Update text elements
+            document.getElementById('value-co2').textContent = co2 + ' ppm';
+            document.getElementById('value-runoff').textContent = runoff + '%';
+            document.getElementById('value-temp').textContent = temp + ' °C';
+            document.getElementById('value-waste').textContent = waste + '%';
+
+            // Get prediction
+            const result = await fetchPrediction(runoff, co2, temp, waste);
+
+            // Update probability text
+            document.getElementById('resultProbability').textContent = result.risk_probability.toFixed(1);
+
+            // Update Status card styles dynamically
+            const resultStatus = document.getElementById('resultStatus');
+            const statusCard = document.getElementById('statusCard');
+            const statusIndicator = document.getElementById('statusIndicator');
+
+            resultStatus.textContent = result.status;
+            
+            if (result.status.includes('Critical') || result.status.includes('Kritis')) {
+                statusCard.className = 'text-center p-6 rounded-2xl flex flex-col items-center justify-center border border-red-200 bg-red-50 text-red-900';
+                statusIndicator.className = 'w-4 h-4 rounded-full mt-3 bg-red-600 animate-ping';
+            } else if (result.status.includes('Medium') || result.status.includes('Sedang')) {
+                statusCard.className = 'text-center p-6 rounded-2xl flex flex-col items-center justify-center border border-amber-200 bg-amber-50 text-amber-900';
+                statusIndicator.className = 'w-4 h-4 rounded-full mt-3 bg-amber-500 animate-pulse';
+            } else {
+                statusCard.className = 'text-center p-6 rounded-2xl flex flex-col items-center justify-center border border-teal-200 bg-teal-50 text-teal-900';
+                statusIndicator.className = 'w-4 h-4 rounded-full mt-3 bg-teal-500';
+            }
+
+            // Update what-if chart curve
+            updateWhatIfCurve(runoff, temp, waste, co2);
+
+            // Update weights display
+            const imp = result.feature_importances;
+            const total = imp.co2_emissions + imp.nutrient_runoff + imp.water_temp + imp.industrial_waste;
+            const co2_w = Math.round((imp.co2_emissions / total) * 100);
+            const runoff_w = Math.round((imp.nutrient_runoff / total) * 100);
+            const temp_w = Math.round((imp.water_temp / total) * 100);
+            const waste_w = Math.round((imp.industrial_waste / total) * 100);
+
+            document.getElementById('weight-co2-pct').textContent = co2_w + '%';
+            document.getElementById('weight-co2-bar').style.width = co2_w + '%';
+
+            document.getElementById('weight-runoff-pct').textContent = runoff_w + '%';
+            document.getElementById('weight-runoff-bar').style.width = runoff_w + '%';
+
+            document.getElementById('weight-temp-pct').textContent = temp_w + '%';
+            document.getElementById('weight-temp-bar').style.width = temp_w + '%';
+
+            document.getElementById('weight-waste-pct').textContent = waste_w + '%';
+            document.getElementById('weight-waste-bar').style.width = waste_w + '%';
+        }
+
+        // Draw and update the What-If Chart
+        function updateWhatIfCurve(runoff, temp, waste, currentCO2) {
+            // Generate points for the curve: CO2 ranges from 200 to 1000 in steps of 100
+            const co2Points = [200, 300, 400, 500, 600, 700, 800, 900, 1000];
+            const riskPoints = co2Points.map(c => {
+                const pred = clientPredict(runoff, c, temp, waste);
+                return pred.risk_probability;
+            });
+
+            // Find risk at current operating point
+            const currentRisk = clientPredict(runoff, currentCO2, temp, waste).risk_probability;
+
+            // Generate datasets
+            const datasetCurve = {
+                label: 'Kurva Risiko Jakarta Bay',
+                data: riskPoints,
+                borderColor: '#00ADC6',
+                borderWidth: 3,
+                fill: false,
+                tension: 0.3,
+                pointRadius: 0
+            };
+
+            // Highlight point representing current slider settings
+            const datasetCurrentPoint = {
+                label: 'Titik Operasional Saat Ini',
+                data: co2Points.map(c => c === currentCO2 ? currentRisk : null),
+                backgroundColor: '#EF4444',
+                borderColor: '#FFFFFF',
+                borderWidth: 2,
+                pointRadius: 8,
+                pointHoverRadius: 10,
+                showLine: false
+            };
+
+            const ctx = document.getElementById('whatIfChart').getContext('2d');
+
+            if (whatIfChartInstance) {
+                // Update existing chart datasets
+                whatIfChartInstance.data.datasets[0].data = riskPoints;
+                // Update highlight point
+                whatIfChartInstance.data.datasets[1].data = co2Points.map(c => {
+                    // Find closest bucket for display alignment
+                    return Math.abs(c - currentCO2) < 50 ? currentRisk : null;
+                });
+                whatIfChartInstance.update('none'); // Update without animation for slider smoothness
+            } else {
+                // Initialize chart
+                whatIfChartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: co2Points,
+                        datasets: [datasetCurve, datasetCurrentPoint]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    font: { family: 'Plus Jakarta Sans', size: 11 }
+                                }
+                            },
+                            tooltip: {
+                                enabled: true
+                            }
+                        },
+                        scales: {
+                            y: {
+                                min: 0,
+                                max: 100,
+                                ticks: {
+                                    font: { family: 'Plus Jakarta Sans' }
+                                },
+                                grid: {
+                                    color: 'rgba(0,0,0,0.05)'
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Risiko Kerusakan (%)',
+                                    font: { family: 'Plus Jakarta Sans', weight: 'bold' }
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    font: { family: 'Plus Jakarta Sans' }
+                                },
+                                grid: {
+                                    display: false
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Emisi CO₂ Lokal (ppm)',
+                                    font: { family: 'Plus Jakarta Sans', weight: 'bold' }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            checkAIEngine();
+        });
+    </script>
+</body>
+</html>

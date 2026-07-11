@@ -3,216 +3,424 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDG 6 - Clean Water & Sanitation</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Platform AI Prediksi Risiko Pengasaman Laut & Konservasi Air</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        marine: {
+                            deep: '#0F2C59',
+                            cyan: '#00ADC6',
+                            teal: '#008080',
+                            light: '#F4F7FB',
+                            accent: '#38BDF8',
+                            darkTeal: '#0D5F60'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom animations & glassmorphism */
+        .glass-nav {
+            background: rgba(15, 44, 89, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .glow-sdg-6 {
+            box-shadow: 0 0 25px rgba(0, 173, 198, 0.6);
+            border: 3px solid #00ADC6;
+        }
+        .glow-sdg-14 {
+            box-shadow: 0 0 25px rgba(0, 128, 128, 0.7);
+            border: 3px solid #008080;
+        }
+        .hover-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
 </head>
+<body class="bg-marine-light text-slate-800 font-sans min-h-screen flex flex-col">
 
-<body>
+    <!-- TOP NAVBAR -->
+    <nav class="glass-nav text-white sticky top-0 z-50 border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">🌊</span>
+                    <span class="font-extrabold text-xl tracking-wider bg-gradient-to-r from-marine-accent to-cyan-300 bg-clip-text text-transparent">AQUA-GUARD AI</span>
+                </div>
+                
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center space-x-8 font-medium">
+                    <a href="index.html" class="text-marine-accent border-b-2 border-marine-accent px-1 py-2 text-sm transition-colors duration-200">Home / SDGs</a>
+                    <a href="dashboard.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">Survei Dashboard</a>
+                    <a href="predict.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">AI Predictor & Simulation</a>
+                    
+                    <!-- Dropdown Design Thinking -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 hover:text-marine-accent transition px-1 py-2 text-sm focus:outline-none" id="dtDropdownBtn">
+                            <span>Design Thinking</span>
+                            <svg class="w-4 h-4 fill-current transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20">
+                                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-52 bg-marine-deep text-white rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-white/10 overflow-hidden py-1">
+                            <a href="empathy.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">🔍 Empathy & Research</a>
+                            <a href="ideation.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">💡 Ideation Process</a>
+                            <a href="prototype.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">🛠 Prototype Solution</a>
+                            <a href="testing.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">📊 Testing & Review</a>
+                            <a href="reflection.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">📝 Project Reflection</a>
+                        </div>
+                    </div>
+                </div>
 
-<!-- NAVBAR -->
-<nav>
-    <div class="logo">
-        🌊 SDG 6
-    </div>
-
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="empathy.html">Empathy</a></li>
-        <li><a href="ideation.html">Ideation</a></li>
-        <li><a href="prototype.html">Prototype</a></li>
-        <li><a href="testing.html">Testing</a></li>
-        <li><a href="reflection.html">Reflection</a></li>
-    </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-
-    <h1>SDG 6: Clean Water & Sanitation</h1>
-
-    <p>
-        Mewujudkan akses air bersih dan sanitasi yang layak bagi seluruh
-        masyarakat Indonesia melalui solusi sederhana, berkelanjutan,
-        dan ramah lingkungan.
-    </p>
-
-    <a href="#fokus" class="btn">
-        Pelajari Lebih Lanjut
-    </a>
-
-</section>
-
-<!-- STATISTIK -->
-<section class="stats">
-
-    <div class="stat-card">
-        <h2>17</h2>
-        <p>Tujuan SDGs</p>
-    </div>
-
-    <div class="stat-card">
-        <h2>6</h2>
-        <p>Fokus SDG</p>
-    </div>
-
-    <div class="stat-card">
-        <h2>2030</h2>
-        <p>Target Global</p>
-    </div>
-
-</section>
-
-<!-- 17 SDGs -->
-<section class="section">
-
-    <h2>17 Tujuan Sustainable Development Goals</h2>
-
-    <div class="grid">
-        <img src="img/1.png" alt="SDG 1">
-        <img src="img/2.png" alt="SDG 2">
-        <img src="img/3.png" alt="SDG 3">
-        <img src="img/4.png" alt="SDG 4">
-        <img src="img/5.png" alt="SDG 5">
-        <img src="img/6.png" alt="SDG 6">
-        <img src="img/7.png" alt="SDG 7">
-        <img src="img/8.png" alt="SDG 8">
-        <img src="img/9.png" alt="SDG 9">
-        <img src="img/10.png" alt="SDG 10">
-        <img src="img/11.png" alt="SDG 11">
-        <img src="img/12.png" alt="SDG 12">
-        <img src="img/13.png" alt="SDG 13">
-        <img src="img/14.png" alt="SDG 14">
-        <img src="img/15.png" alt="SDG 15">
-        <img src="img/16.png" alt="SDG 16">
-        <img src="img/17.png" alt="SDG 17">
-    </div>
-
-</section>
-
-<!-- FOKUS SDG 6 -->
-<section class="section" id="fokus">
-
-    <h2>Fokus SDG 6: Air Bersih dan Sanitasi</h2>
-
-    <p>
-        SDG 6 bertujuan untuk memastikan ketersediaan dan pengelolaan
-        air bersih serta sanitasi yang layak bagi semua. Akses terhadap
-        air bersih merupakan kebutuhan dasar manusia dan menjadi faktor
-        penting dalam kesehatan, pendidikan, serta pembangunan ekonomi.
-    </p>
-
-</section>
-
-<!-- FAKTA -->
-<section class="section">
-
-    <h2>Fakta SDG 6 di Indonesia</h2>
-
-    <div class="fact-grid">
-
-        <div class="fact-card">
-            💧 Akses air bersih belum merata di seluruh wilayah Indonesia.
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-white hover:text-marine-accent focus:outline-none p-2 rounded-lg bg-white/5 border border-white/10">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="fact-card">
-            🚰 Masih terdapat daerah dengan sanitasi yang tidak layak.
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-marine-deep border-t border-white/10 px-4 py-4 space-y-3">
+            <a href="index.html" class="block text-marine-accent font-semibold text-base py-2">Home / SDGs</a>
+            <a href="dashboard.html" class="block hover:text-marine-accent text-base py-2 transition-colors">Survei Dashboard</a>
+            <a href="predict.html" class="block hover:text-marine-accent text-base py-2 transition-colors">AI Predictor & Simulation</a>
+            <div class="pt-2 border-t border-white/5">
+                <span class="block text-slate-400 text-xs uppercase tracking-wider mb-2">Design Thinking Process</span>
+                <a href="empathy.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">🔍 Empathy & Research</a>
+                <a href="ideation.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">💡 Ideation Process</a>
+                <a href="prototype.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">🛠 Prototype Solution</a>
+                <a href="testing.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">📊 Testing & Review</a>
+                <a href="reflection.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">📝 Project Reflection</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative bg-gradient-to-br from-marine-deep via-[#1A4B8C] to-marine-teal text-white py-24 px-4 overflow-hidden border-b border-white/10">
+        <!-- Abstract glowing circles -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-marine-cyan/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-marine-teal/20 rounded-full blur-3xl -ml-20 -mb-20"></div>
+        
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/10 border border-white/20 text-marine-accent uppercase tracking-widest mb-6">
+                <span class="w-2 h-2 rounded-full bg-marine-accent animate-pulse"></span> SDG 6 & SDG 14 Synergy Platform
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-8 leading-tight">
+                Platform AI Prediksi Risiko <br>
+                <span class="bg-gradient-to-r from-marine-accent via-cyan-200 to-white bg-clip-text text-transparent">Pengasaman Laut & Konservasi Air</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed mb-10">
+                Mengintegrasikan teknologi Machine Learning untuk memantau risiko pengasaman air laut di pesisir Jakarta dan mengampanyekan solusi penampungan air hujan demi konservasi air bersih.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#sdgs" class="w-full sm:w-auto px-8 py-4 bg-marine-cyan hover:bg-cyan-500 text-marine-deep font-bold rounded-xl shadow-lg hover:shadow-cyan-500/30 transform hover:-translate-y-0.5 transition-all text-center">
+                    Eksplorasi 17 SDGs
+                </a>
+                <a href="predict.html" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/30 text-white font-bold rounded-xl transform hover:-translate-y-0.5 transition-all text-center">
+                    Coba AI Predictor
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN STATS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white flex items-center space-x-6">
+                <div class="p-4 bg-marine-cyan/10 rounded-xl text-marine-cyan text-3xl">🎯</div>
+                <div>
+                    <h3 class="text-3xl font-extrabold text-marine-deep">17</h3>
+                    <p class="text-slate-500 font-medium text-sm">Tujuan Pembangunan (SDGs)</p>
+                </div>
+            </div>
+            <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white flex items-center space-x-6 border-l-4 border-l-marine-cyan">
+                <div class="p-4 bg-marine-teal/10 rounded-xl text-marine-teal text-3xl">💧</div>
+                <div>
+                    <h3 class="text-3xl font-extrabold text-marine-deep">SDG 6 & 14</h3>
+                    <p class="text-slate-500 font-medium text-sm">Fokus Konservasi & Laut</p>
+                </div>
+            </div>
+            <div class="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white flex items-center space-x-6">
+                <div class="p-4 bg-purple-500/10 rounded-xl text-purple-500 text-3xl">🤖</div>
+                <div>
+                    <h3 class="text-3xl font-extrabold text-marine-deep">Random Forest</h3>
+                    <p class="text-slate-500 font-medium text-sm">Model AI Prediksi Risiko</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: 17 SDGs INTERAKTIF -->
+    <section id="sdgs" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-marine-deep mb-4">17 Sustainable Development Goals (SDGs)</h2>
+            <p class="text-slate-500 max-w-2xl mx-auto">
+                Klik pada kartu SDG untuk melihat detail kontribusi platform kami terhadap pencapaian target tujuan pembangunan global.
+            </p>
         </div>
 
-        <div class="fact-card">
-            🌞 Krisis air sering terjadi saat musim kemarau.
+        <!-- SDG Cards Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6" id="sdgGrid">
+            <!-- Cartas dynamically created or styled here -->
         </div>
 
-        <div class="fact-card">
-            ⚠️ Pencemaran air menjadi masalah utama lingkungan.
+        <!-- Details Box for SDGs (Dynamically updated) -->
+        <div id="sdgDetailBox" class="mt-12 bg-white p-8 rounded-2xl shadow-lg border border-slate-100 hidden transform transition-all duration-300">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                <img id="sdgDetailImg" src="" alt="SDG Logo" class="w-32 h-32 rounded-xl object-cover bg-slate-50 p-2 shadow-md">
+                <div class="flex-1 text-center md:text-left">
+                    <div class="inline-block px-3 py-1 bg-marine-deep text-white rounded-full text-xs font-bold mb-3" id="sdgDetailNum">SDG 1</div>
+                    <h3 class="text-2xl font-bold text-marine-deep mb-3" id="sdgDetailTitle">Nama SDG</h3>
+                    <p class="text-slate-600 leading-relaxed" id="sdgDetailDesc">Deskripsi SDG dan hubungannya dengan program konservasi air.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="fact-card">
-            🎯 Pemerintah menargetkan akses air bersih 100% pada tahun 2030.
+    <!-- SECTION: FAKTA KRUSIAL (SDG 6 & 14) -->
+    <section class="bg-gradient-to-b from-white to-marine-light py-20 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-marine-cyan font-bold text-xs uppercase tracking-widest bg-marine-cyan/10 px-3.5 py-1.5 rounded-full">Fakta & Data Empiris</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-marine-deep mt-4">5 Fakta Krusial Air Bersih & Ekosistem Laut</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto mt-2">
+                    Kondisi mendesak di Indonesia yang mendorong inisiatif monitoring dan konservasi air berbasis teknologi.
+                </p>
+            </div>
+
+            <!-- Fakta Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <!-- Fakta 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-xl font-bold mb-6">1</div>
+                        <h4 class="font-bold text-marine-deep mb-2 text-base">Akses Belum Merata</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            Akses air minum layak di Indonesia belum merata di berbagai wilayah, terutama pesisir dan pedalaman (Data BPS).
+                        </p>
+                    </div>
+                    <span class="text-xs font-semibold text-orange-500 mt-4 block">BPS Indonesia</span>
+                </div>
+
+                <!-- Fakta 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center text-xl font-bold mb-6">2</div>
+                        <h4 class="font-bold text-marine-deep mb-2 text-base">Sungai Tercemar</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            Pencemaran sungai yang masif menurunkan kualitas air akibat limbah rumah tangga dan akumulasi mikroplastik.
+                        </p>
+                    </div>
+                    <span class="text-xs font-semibold text-red-500 mt-4 block">LHK / KPL</span>
+                </div>
+
+                <!-- Fakta 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-yellow-100 text-yellow-600 flex items-center justify-center text-xl font-bold mb-6">3</div>
+                        <h4 class="font-bold text-marine-deep mb-2 text-base">Sanitasi Buruk</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            Sanitasi buruk meningkatkan risiko penyebaran penyakit menular seperti diare dan kolera (Data WHO).
+                        </p>
+                    </div>
+                    <span class="text-xs font-semibold text-yellow-600 mt-4 block">WHO Report</span>
+                </div>
+
+                <!-- Fakta 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold mb-6">4</div>
+                        <h4 class="font-bold text-marine-deep mb-2 text-base">Kekeringan Ekstrem</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            Perubahan iklim meningkatkan intensitas kekeringan ekstrem di beberapa wilayah di Indonesia.
+                        </p>
+                    </div>
+                    <span class="text-xs font-semibold text-blue-500 mt-4 block">BMKG Indonesia</span>
+                </div>
+
+                <!-- Fakta 5 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl font-bold mb-6">5</div>
+                        <h4 class="font-bold text-marine-deep mb-2 text-base">Konservasi Hujan</h4>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            Pemanfaatan penampungan air hujan (PAH) menjadi solusi konservasi air non-konsumsi guna melestarikan ekosistem laut.
+                        </p>
+                    </div>
+                    <span class="text-xs font-semibold text-teal-600 mt-4 block">SDG 6 & 14 Goal</span>
+                </div>
+            </div>
         </div>
+    </section>
 
-    </div>
+    <!-- SECTION: LEAN CANVAS & TIMELINE (Nadia's Content) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-100">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
+                <h3 class="text-2xl font-bold text-marine-deep mb-6 flex items-center gap-2">
+                    <span>📋</span> Ringkasan Inisiatif & Referensi
+                </h3>
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 space-y-4">
+                    <p class="text-slate-600 text-sm">
+                        Proyek ini dikembangkan menggunakan kerangka kerja <strong>Design Thinking</strong> untuk memastikan solusi yang diciptakan benar-benar didasarkan pada empati dan pengujian berulang terhadap kebutuhan riil pengguna di Indonesia.
+                    </p>
+                    <div class="pt-4 border-t border-slate-100">
+                        <h4 class="font-bold text-slate-800 text-sm mb-2">Referensi Terkait:</h4>
+                        <ul class="text-xs text-slate-500 space-y-1.5 list-disc pl-4">
+                            <li>United Nations. The 17 Goals. <a href="https://sdgs.un.org/goals" target="_blank" class="text-marine-cyan hover:underline">https://sdgs.un.org/goals</a></li>
+                            <li>United Nations. Sustainable Development Goals. <a href="https://www.un.org/sustainabledevelopment/" target="_blank" class="text-marine-cyan hover:underline">https://www.un.org/sustainabledevelopment/</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-2xl font-bold text-marine-deep mb-6 flex items-center gap-2">
+                    <span>🛠</span> Manajemen Proyek
+                </h3>
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between h-48">
+                    <p class="text-slate-600 text-sm">
+                        Seluruh proses pengerjaan proyek, mulai dari Empathy, Ideation, hingga Prototype dan Testing dikelola menggunakan Trello Board untuk kolaborasi tim yang transparan.
+                    </p>
+                    <a href="https://trello.com/" target="_blank" class="inline-flex justify-center items-center px-6 py-3 bg-[#0079BF] hover:bg-[#0067A3] text-white font-bold rounded-xl transition shadow-md w-full text-center">
+                        Buka Board Trello Proyek 📋
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</section>
+    <!-- FOOTER -->
+    <footer class="bg-marine-deep text-white py-12 mt-auto border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <span class="text-xl font-bold text-white tracking-widest uppercase">🌊 AQUA-GUARD AI</span>
+                    <p class="text-xs text-slate-400 mt-2">Mendukung SDG 6 (Air Bersih) & SDG 14 (Ekosistem Laut) dengan Machine Learning</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-sm text-slate-300">© 2026 Platform Konservasi SDGs - Nadia Artamelina</p>
+                    <p class="text-xs text-slate-500 mt-1">Dikembangkan dengan React/HTML5, Tailwind, Flask, dan Scikit-Learn</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<!-- TARGET -->
-<section class="section">
+    <!-- INTERACTIVE JS CODE FOR SDGS GRID -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-    <h2>Target SDG yang Dipilih</h2>
+        // 17 SDGs Data
+        const sdgs = [
+            { id: 1, name: "Tanpa Kemiskinan", desc: "Mengentaskan segala bentuk kemiskinan di seluruh penjuru dunia." },
+            { id: 2, name: "Tanpa Kelaparan", desc: "Mengakhiri kelaparan, mencapai ketahanan pangan, dan meningkatkan gizi berkelanjutan." },
+            { id: 3, name: "Kehidupan Sehat & Sejahtera", desc: "Menjamin kehidupan yang sehat dan meningkatkan kesejahteraan bagi semua usia." },
+            { id: 4, name: "Pendidikan Berkualitas", desc: "Menjamin pendidikan berkualitas yang inklusif dan merata bagi semua orang." },
+            { id: 5, name: "Kesetaraan Gender", desc: "Mencapai kesetaraan gender dan memberdayakan semua perempuan." },
+            { id: 6, name: "Air Bersih & Sanitasi Layak", desc: "Fokus Utama: Memastikan ketersediaan dan pengelolaan air bersih serta sanitasi yang layak dan berkelanjutan bagi semua orang melalui Penampungan Air Hujan (PAH) non-konsumsi.", highlight: true, detail: "Melalui implementasi sistem penampungan air hujan sederhana, masyarakat dapat memanfaatkan air non-konsumsi secara hemat energi dan mengurangi krisis sanitasi di wilayah pemukiman padat penduduk." },
+            { id: 7, name: "Energi Bersih & Terjangkau", desc: "Menjamin akses energi yang terjangkau, andal, berkelanjutan, dan modern." },
+            { id: 8, name: "Pekerjaan Layak & Pertumbuhan Ekonomi", desc: "Meningkatkan pertumbuhan ekonomi yang inklusif dan berkelanjutan, serta pekerjaan yang layak." },
+            { id: 9, name: "Industri, Inovasi & Infrastruktur", desc: "Membangun infrastruktur tangguh, meningkatkan industri inklusif, dan mendorong inovasi." },
+            { id: 10, name: "Berkurangnya Kesenjangan", desc: "Mengurangi kesenjangan di dalam dan antarnegara." },
+            { id: 11, name: "Kota & Permukiman Berkelanjutan", desc: "Menjadikan kota dan permukiman inklusif, aman, tangguh, dan berkelanjutan." },
+            { id: 12, name: "Konsumsi & Produksi Bertanggung Jawab", desc: "Menjamin pola konsumsi dan produksi yang berkelanjutan." },
+            { id: 13, name: "Penanganan Perubahan Iklim", desc: "Mengambil tindakan cepat untuk mengatasi perubahan iklim dan dampaknya." },
+            { id: 14, name: "Ekosistem Laut (Life Below Water)", desc: "Fokus Utama: Melestarikan dan memanfaatkan samudera, laut, serta sumber daya kelautan secara berkelanjutan dengan memprediksi tingkat pengasaman air akibat emisi CO₂.", highlight: true, detail: "Model AI kami mengintegrasikan data lingkungan lokal (limpasan nutrisi, emisi CO₂ lokal, suhu air, dan limbah industri) untuk memetakan tingkat keparahan risiko pengasaman air laut di Teluk Jakarta secara real-time." },
+            { id: 15, name: "Ekosistem Daratan", desc: "Melindungi, memulihkan, dan meningkatkan pemanfaatan berkelanjutan ekosistem daratan." },
+            { id: 16, name: "Perdamaian, Keadilan & Kelembagaan Tangguh", desc: "Mendorong masyarakat damai dan inklusif untuk pembangunan berkelanjutan." },
+            { id: 17, name: "Kemitraan untuk Mencapai Tujuan", desc: "Memperkuat sarana implementasi dan merevitalisasi kemitraan global." }
+        ];
 
-    <ul>
-        <li>
-            Target 6.1: Mencapai akses universal terhadap air minum
-            yang aman dan terjangkau.
-        </li>
+        const sdgGrid = document.getElementById('sdgGrid');
+        const sdgDetailBox = document.getElementById('sdgDetailBox');
+        const sdgDetailImg = document.getElementById('sdgDetailImg');
+        const sdgDetailNum = document.getElementById('sdgDetailNum');
+        const sdgDetailTitle = document.getElementById('sdgDetailTitle');
+        const sdgDetailDesc = document.getElementById('sdgDetailDesc');
 
-        <li>
-            Target 6.2: Mencapai akses sanitasi dan kebersihan yang memadai.
-        </li>
-    </ul>
+        // Render grid cards
+        sdgs.forEach(sdg => {
+            const card = document.createElement('div');
+            // Check highlights
+            let highlightClasses = "bg-white border border-slate-100 hover:border-marine-accent";
+            if (sdg.id === 6) {
+                highlightClasses = "glow-sdg-6 bg-[#E6F8FA] border-2 border-marine-cyan";
+            } else if (sdg.id === 14) {
+                highlightClasses = "glow-sdg-14 bg-[#E6F3F3] border-2 border-marine-teal";
+            }
 
-</section>
+            card.className = `p-4 rounded-xl cursor-pointer hover-card flex flex-col items-center text-center relative ${highlightClasses}`;
+            card.id = `sdg-card-${sdg.id}`;
+            card.innerHTML = `
+                <div class="absolute top-2 left-2 text-xs font-bold text-slate-400">#${sdg.id}</div>
+                <img src="img/${sdg.id}.png" alt="${sdg.name}" class="w-16 h-16 object-contain mb-3 mt-2" onerror="this.src='https://placehold.co/100x100/0F2C59/FFFFFF?text=SDG+${sdg.id}'">
+                <h4 class="font-bold text-xs leading-snug text-marine-deep">${sdg.name}</h4>
+                ${sdg.highlight ? `<span class="mt-2 text-[10px] font-extrabold tracking-wider bg-marine-teal text-white px-2 py-0.5 rounded-full uppercase">Fokus AI</span>` : ''}
+            `;
 
-<!-- DESIGN THINKING -->
-<section class="section">
+            // Click event to show detail box
+            card.addEventListener('click', () => {
+                // Remove highlight from previous cards
+                document.querySelectorAll('#sdgGrid > div').forEach(c => {
+                    c.classList.remove('ring-4', 'ring-marine-accent/30');
+                });
+                card.classList.add('ring-4', 'ring-marine-accent/30');
 
-    <h2>Tahapan Design Thinking</h2>
+                // Update detail contents
+                sdgDetailImg.src = `img/${sdg.id}.png`;
+                sdgDetailImg.onerror = function() { this.src = `https://placehold.co/200x200/0F2C59/FFFFFF?text=SDG+${sdg.id}`; };
+                sdgDetailNum.textContent = `GOAL ${sdg.id}`;
+                sdgDetailTitle.textContent = sdg.name;
+                
+                // If it's a focus SDG, append the detailed context
+                let description = sdg.desc;
+                if (sdg.detail) {
+                    description += `<br><br><strong class="text-marine-deep">Kontribusi Platform:</strong> ${sdg.detail}`;
+                }
+                sdgDetailDesc.innerHTML = description;
 
-    <div class="fact-grid">
+                // Show box
+                sdgDetailBox.classList.remove('hidden');
+                sdgDetailBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
 
-        <div class="fact-card">🔍 Empathy</div>
+            sdgGrid.appendChild(card);
+        });
 
-        <div class="fact-card">💡 Ideation</div>
-
-        <div class="fact-card">🛠 Prototype</div>
-
-        <div class="fact-card">📊 Testing</div>
-
-        <div class="fact-card">📝 Reflection</div>
-
-    </div>
-
-</section>
-
-<!-- TRELLO -->
-<section class="section">
-
-    <h2>Manajemen Proyek</h2>
-
-    <p>
-        Seluruh proses pengerjaan proyek dikelola menggunakan Trello
-        untuk memantau perkembangan tugas dan kolaborasi tim.
-    </p>
-
-    <a href="https://trello.com/" target="_blank" class="btn">
-        Lihat Trello Project
-    </a>
-
-</section>
-
-<!-- REFERENSI -->
-<section class="section">
-
-    <h2>Referensi</h2>
-
-    <p>
-        United Nations. The 17 Goals.
-        https://sdgs.un.org/goals
-    </p>
-
-    <p>
-        United Nations. Sustainable Development Goals.
-        https://www.un.org/sustainabledevelopment/
-    </p>
-
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <p>© SDG Project 2026 - Nadia Artamelina</p>
-</footer>
-
+        // Trigger click on SDG 6 by default
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('sdg-card-6').click();
+            }, 100);
+        });
+    </script>
 </body>
 </html>

@@ -3,108 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prototype - SDG 6</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Prototype Solution - SDG Project</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        marine: {
+                            deep: '#0F2C59',
+                            cyan: '#00ADC6',
+                            teal: '#008080',
+                            light: '#F4F7FB',
+                            accent: '#38BDF8',
+                            darkTeal: '#0D5F60'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .glass-nav {
+            background: rgba(15, 44, 89, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
 </head>
+<body class="bg-marine-light text-slate-800 font-sans min-h-screen flex flex-col">
 
-<body>
+    <!-- TOP NAVBAR -->
+    <nav class="glass-nav text-white sticky top-0 z-50 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">🌊</span>
+                    <span class="font-extrabold text-xl tracking-wider bg-gradient-to-r from-marine-accent to-cyan-300 bg-clip-text text-transparent">AQUA-GUARD AI</span>
+                </div>
+                
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center space-x-8 font-medium">
+                    <a href="index.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">Home / SDGs</a>
+                    <a href="dashboard.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">Survei Dashboard</a>
+                    <a href="predict.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">AI Predictor & Simulation</a>
+                    
+                    <!-- Dropdown Design Thinking -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-marine-accent border-b-2 border-marine-accent transition px-1 py-2 text-sm focus:outline-none" id="dtDropdownBtn">
+                            <span>Design Thinking</span>
+                            <svg class="w-4 h-4 fill-current transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20">
+                                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-52 bg-marine-deep text-white rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-white/10 overflow-hidden py-1">
+                            <a href="empathy.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">🔍 Empathy & Research</a>
+                            <a href="ideation.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">💡 Ideation Process</a>
+                            <a href="prototype.html" class="block px-4 py-2.5 bg-marine-teal/40 text-marine-accent transition text-sm">🛠 Prototype Solution</a>
+                            <a href="testing.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">📊 Testing & Review</a>
+                            <a href="reflection.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">📝 Project Reflection</a>
+                        </div>
+                    </div>
+                </div>
 
-<nav>
-    <h2>SDG 6</h2>
-
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="empathy.html">Empathy</a></li>
-        <li><a href="ideation.html">Ideation</a></li>
-        <li><a href="prototype.html">Prototype</a></li>
-        <li><a href="testing.html">Testing</a></li>
-        <li><a href="reflection.html">Reflection</a></li>
-    </ul>
-</nav>
-
-<section class="hero">
-    <h1>Prototype Solution</h1>
-    <p>
-        Tahap prototype berfokus pada pengembangan solusi yang dapat
-        membantu mengatasi masalah akses air bersih melalui sistem
-        penampungan air hujan yang sederhana, murah, dan ramah lingkungan.
-    </p>
-</section>
-
-<section class="section">
-
-    <h2>Lean Canvas</h2>
-
-    <div class="canvas-grid">
-
-        <div class="canvas-box">
-            <h3>⚠ Problem</h3>
-            <p>
-                Kurangnya akses air bersih di beberapa wilayah serta
-                tingginya penggunaan air bersih untuk kebutuhan non-prioritas.
-            </p>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-white hover:text-marine-accent focus:outline-none p-2 rounded-lg bg-white/5 border border-white/10">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="canvas-box">
-            <h3>👥 Customer</h3>
-            <p>
-                Mahasiswa, masyarakat, sekolah, dan komunitas yang ingin
-                menghemat penggunaan air bersih.
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-marine-deep border-t border-white/10 px-4 py-4 space-y-3">
+            <a href="index.html" class="block hover:text-marine-accent text-base py-2 transition-colors">Home / SDGs</a>
+            <a href="dashboard.html" class="block hover:text-marine-accent text-base py-2 transition-colors">Survei Dashboard</a>
+            <a href="predict.html" class="block hover:text-marine-accent text-base py-2 transition-colors">AI Predictor & Simulation</a>
+            <div class="pt-2 border-t border-white/5">
+                <span class="block text-slate-400 text-xs uppercase tracking-wider mb-2">Design Thinking Process</span>
+                <a href="empathy.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">🔍 Empathy & Research</a>
+                <a href="ideation.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">💡 Ideation Process</a>
+                <a href="prototype.html" class="block text-marine-accent font-semibold text-sm pl-3 py-2">🛠 Prototype Solution</a>
+                <a href="testing.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">📊 Testing & Review</a>
+                <a href="reflection.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">📝 Project Reflection</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="bg-gradient-to-r from-marine-deep to-[#1A4B8C] text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto text-center md:text-left">
+            <span class="text-xs uppercase tracking-widest text-marine-accent font-bold">Design Thinking - Tahap 3</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mt-2 mb-2">Prototype Solution</h1>
+            <p class="text-slate-300 max-w-2xl text-sm md:text-base">
+                Merancang model Lean Canvas untuk sistem penampungan air hujan sederhana guna mengurangi ketergantungan pada air tanah.
             </p>
         </div>
+    </header>
 
-        <div class="canvas-box">
-            <h3>💡 Solution</h3>
-            <p>
-                Sistem penampungan air hujan yang dapat dimanfaatkan
-                untuk menyiram tanaman, membersihkan lingkungan,
-                dan kebutuhan non-konsumsi lainnya.
-            </p>
+    <!-- CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-12 flex-1">
+        
+        <!-- LEAN CANVAS GRAPHIC CARD -->
+        <section class="space-y-6">
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-extrabold text-marine-deep">Lean Canvas: Penampung Air Hujan (PAH)</h2>
+                <span class="text-xs text-slate-400 font-semibold">Model Bisnis Sosial Berkelanjutan</span>
+            </div>
+            
+            <!-- Dashboard Lean Canvas -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Box 1: Problem -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-t-red-500 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-marine-deep mb-3 flex items-center gap-1.5 text-base">
+                            <span>⚠</span> Problem (Masalah)
+                        </h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Kurangnya akses air bersih yang layak di wilayah pemukiman padat serta tingginya pemborosan air bersih untuk kebutuhan sekunder (non-konsumsi).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Box 2: Customer Segments -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-t-blue-500 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-marine-deep mb-3 flex items-center gap-1.5 text-base">
+                            <span>👥</span> Customer (Segmen)
+                        </h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Mahasiswa kampus, masyarakat rumah tangga perkotaan, pengelola sekolah, dan komunitas pencinta lingkungan.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Box 3: Solution -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-t-marine-cyan flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-marine-deep mb-3 flex items-center gap-1.5 text-base">
+                            <span>💡</span> Solution (Solusi)
+                        </h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Sistem Penampungan Air Hujan (PAH) modular yang terhubung ke atap bangunan, menyaring air secara mekanis untuk menyiram tanaman dan toilet.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Box 4: Unique Value Proposition -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-t-marine-teal flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-marine-deep mb-3 flex items-center gap-1.5 text-base">
+                            <span>🌱</span> Value Proposition
+                        </h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Solusi konservasi air bersih yang mandiri, hemat biaya operasional bulanan, ramah ekosistem, serta mendukung target SDG 6 dan SDG 14.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Box 5: Channels -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-t-yellow-500 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-marine-deep mb-3 flex items-center gap-1.5 text-base">
+                            <span>📢</span> Channels (Saluran)
+                        </h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Aplikasi web edukatif (platform ini), media sosial komunitas, seminar/penyuluhan kampus, dan pameran teknologi tepat guna.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Box 6: Cost Structure -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-t-slate-500 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-marine-deep mb-3 flex items-center gap-1.5 text-base">
+                            <span>💰</span> Cost (Struktur Biaya)
+                        </h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Biaya fabrikasi tangki penampung air plastik/beton, pipa paralon penyalur, bahan filter sederhana (ijuk, pasir, batu), dan perawatan berkala.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Box 7: Benefit (Col-span wide if layout allows) -->
+                <div class="bg-gradient-to-r from-marine-deep to-[#1A4B8C] text-white p-6 rounded-2xl shadow-md lg:col-span-3 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-marine-accent mb-3 flex items-center gap-1.5 text-base">
+                            <span>🎯</span> Key Benefits (Manfaat Utama)
+                        </h3>
+                        <p class="text-xs text-slate-200 leading-relaxed">
+                            Mampu mereduksi pemakaian air sumur/PDAM hingga <strong>30%</strong>, meningkatkan resapan air tanah, membangun kemandirian air di musim kemarau, dan mengurangi limpasan banjir di area pemukiman padat.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-marine-deep text-white py-12 mt-auto border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <span class="text-xl font-bold text-white tracking-widest uppercase">🌊 AQUA-GUARD AI</span>
+                    <p class="text-xs text-slate-400 mt-2">Mendukung SDG 6 (Air Bersih) & SDG 14 (Ekosistem Laut) dengan Machine Learning</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-sm text-slate-300">© 2026 Platform Konservasi SDGs - Nadia Artamelina</p>
+                    <p class="text-xs text-slate-500 mt-1">Dikembangkan dengan React/HTML5, Tailwind, Flask, dan Scikit-Learn</p>
+                </div>
+            </div>
         </div>
+    </footer>
 
-        <div class="canvas-box">
-            <h3>🌱 Value Proposition</h3>
-            <p>
-                Solusi sederhana, hemat biaya, ramah lingkungan,
-                serta mendukung pencapaian SDG 6.
-            </p>
-        </div>
-
-        <div class="canvas-box">
-            <h3>📢 Channels</h3>
-            <p>
-                Website edukasi, media sosial, seminar kampus,
-                dan kegiatan penyuluhan masyarakat.
-            </p>
-        </div>
-
-        <div class="canvas-box">
-            <h3>💰 Cost</h3>
-            <p>
-                Biaya pembuatan tangki penampungan, pipa,
-                filter sederhana, dan perawatan sistem.
-            </p>
-        </div>
-
-        <div class="canvas-box">
-            <h3>🎯 Benefit</h3>
-            <p>
-                Mengurangi penggunaan air bersih hingga 30%,
-                meningkatkan kesadaran lingkungan,
-                dan memanfaatkan sumber daya alam secara berkelanjutan.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-<footer>
-    <p>© SDG Project 2026 - Nadia Artamelina</p>
-</footer>
-
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>

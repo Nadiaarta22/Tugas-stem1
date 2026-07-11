@@ -3,113 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reflection - SDG 6</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Project Reflection - SDG Project</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        marine: {
+                            deep: '#0F2C59',
+                            cyan: '#00ADC6',
+                            teal: '#008080',
+                            light: '#F4F7FB',
+                            accent: '#38BDF8',
+                            darkTeal: '#0D5F60'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .glass-nav {
+            background: rgba(15, 44, 89, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
 </head>
+<body class="bg-marine-light text-slate-800 font-sans min-h-screen flex flex-col">
 
-<body>
+    <!-- TOP NAVBAR -->
+    <nav class="glass-nav text-white sticky top-0 z-50 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">🌊</span>
+                    <span class="font-extrabold text-xl tracking-wider bg-gradient-to-r from-marine-accent to-cyan-300 bg-clip-text text-transparent">AQUA-GUARD AI</span>
+                </div>
+                
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center space-x-8 font-medium">
+                    <a href="index.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">Home / SDGs</a>
+                    <a href="dashboard.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">Survei Dashboard</a>
+                    <a href="predict.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">AI Predictor & Simulation</a>
+                    
+                    <!-- Dropdown Design Thinking -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-marine-accent border-b-2 border-marine-accent transition px-1 py-2 text-sm focus:outline-none" id="dtDropdownBtn">
+                            <span>Design Thinking</span>
+                            <svg class="w-4 h-4 fill-current transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20">
+                                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-52 bg-marine-deep text-white rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-white/10 overflow-hidden py-1">
+                            <a href="empathy.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">🔍 Empathy & Research</a>
+                            <a href="ideation.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">💡 Ideation Process</a>
+                            <a href="prototype.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">🛠 Prototype Solution</a>
+                            <a href="testing.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">📊 Testing & Review</a>
+                            <a href="reflection.html" class="block px-4 py-2.5 bg-marine-teal/40 text-marine-accent transition text-sm">📝 Project Reflection</a>
+                        </div>
+                    </div>
+                </div>
 
-<nav>
-    <h2>SDG 6</h2>
-
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="empathy.html">Empathy</a></li>
-        <li><a href="ideation.html">Ideation</a></li>
-        <li><a href="prototype.html">Prototype</a></li>
-        <li><a href="testing.html">Testing</a></li>
-        <li><a href="reflection.html">Reflection</a></li>
-    </ul>
-</nav>
-
-<section class="hero">
-    <h1>Project Reflection</h1>
-
-    <p>
-        Tahap reflection dilakukan untuk mengevaluasi hasil proyek,
-        mengidentifikasi kelebihan dan kekurangan, serta menentukan
-        pengembangan yang dapat dilakukan di masa mendatang.
-    </p>
-</section>
-
-<section class="section">
-
-    <h2>PMI Analysis</h2>
-
-    <div class="reflection-grid">
-
-        <div class="reflection-card">
-            <h3>✅ Positive</h3>
-
-            <p>
-                Sistem penampungan air hujan mampu membantu mengurangi
-                penggunaan air bersih untuk kebutuhan non-konsumsi.
-            </p>
-
-            <p>
-                Solusi yang diusulkan sederhana, mudah diterapkan,
-                serta mendukung upaya pelestarian lingkungan.
-            </p>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-white hover:text-marine-accent focus:outline-none p-2 rounded-lg bg-white/5 border border-white/10">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="reflection-card">
-            <h3>❌ Minus</h3>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-marine-deep border-t border-white/10 px-4 py-4 space-y-3">
+            <a href="index.html" class="block hover:text-marine-accent text-base py-2 transition-colors">Home / SDGs</a>
+            <a href="dashboard.html" class="block hover:text-marine-accent text-base py-2 transition-colors">Survei Dashboard</a>
+            <a href="predict.html" class="block hover:text-marine-accent text-base py-2 transition-colors">AI Predictor & Simulation</a>
+            <div class="pt-2 border-t border-white/5">
+                <span class="block text-slate-400 text-xs uppercase tracking-wider mb-2">Design Thinking Process</span>
+                <a href="empathy.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">🔍 Empathy & Research</a>
+                <a href="ideation.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">💡 Ideation Process</a>
+                <a href="prototype.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">🛠 Prototype Solution</a>
+                <a href="testing.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">📊 Testing & Review</a>
+                <a href="reflection.html" class="block text-marine-accent font-semibold text-sm pl-3 py-2">📝 Project Reflection</a>
+            </div>
+        </div>
+    </nav>
 
-            <p>
-                Implementasi awal memerlukan biaya untuk penyediaan
-                tangki, pipa, dan sistem penyaringan.
-            </p>
-
-            <p>
-                Ketersediaan air hujan juga dipengaruhi oleh kondisi
-                cuaca dan musim.
+    <!-- HERO -->
+    <header class="bg-gradient-to-r from-marine-deep to-[#1A4B8C] text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto text-center md:text-left">
+            <span class="text-xs uppercase tracking-widest text-marine-accent font-bold">Design Thinking - Tahap 5</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mt-2 mb-2">Project Reflection</h1>
+            <p class="text-slate-300 max-w-2xl text-sm md:text-base">
+                Mengevaluasi hasil keseluruhan proyek, merefleksikan nilai tambah, serta menyusun rencana pengembangan masa depan.
             </p>
         </div>
+    </header>
 
-        <div class="reflection-card">
-            <h3>🔧 Improvement</h3>
+    <!-- CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-12 flex-1">
+        
+        <!-- PMI ANALYSIS -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-extrabold text-marine-deep">Analisis PMI (Plus, Minus, Improvement)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Plus -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-t-teal-500">
+                    <h3 class="font-bold text-teal-600 mb-4 flex items-center gap-1.5 text-base">
+                        <span>➕</span> Plus (Kelebihan)
+                    </h3>
+                    <ul class="text-xs text-slate-500 space-y-2 list-disc pl-4 leading-relaxed">
+                        <li>Sistem Penampungan Air Hujan (PAH) mampu menekan pemakaian air tanah untuk non-konsumsi secara nyata.</li>
+                        <li>Teknologi tepat guna sederhana, mudah diinstal oleh warga awam, dan ramah ekosistem.</li>
+                    </ul>
+                </div>
 
-            <p>
-                Menambah kapasitas penyimpanan air agar mampu
-                menampung lebih banyak air hujan.
+                <!-- Minus -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-t-red-500">
+                    <h3 class="font-bold text-red-500 mb-4 flex items-center gap-1.5 text-base">
+                        <span>➖</span> Minus (Kekurangan)
+                    </h3>
+                    <ul class="text-xs text-slate-500 space-y-2 list-disc pl-4 leading-relaxed">
+                        <li>Investasi alat awal (tangki air dan pemipaan) memerlukan biaya mandiri dari masyarakat.</li>
+                        <li>Ketersediaan pasokan air sangat dipengaruhi cuaca dan pergantian musim kemarau basah.</li>
+                    </ul>
+                </div>
+
+                <!-- Improvement -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-t-marine-cyan">
+                    <h3 class="font-bold text-marine-cyan mb-4 flex items-center gap-1.5 text-base">
+                        <span>🔧</span> Improvement (Perbaikan)
+                    </h3>
+                    <ul class="text-xs text-slate-500 space-y-2 list-disc pl-4 leading-relaxed">
+                        <li>Mengintegrasikan tangki penyimpanan paralel tambahan untuk mengantisipasi masa kemarau panjang.</li>
+                        <li>Mengembangkan sistem filtrasi air bertahap dan sensor IoT pemantau kualitas air cerdas.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- KESIMPULAN REFLEKSI -->
+        <section class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 space-y-4">
+            <h2 class="text-2xl font-extrabold text-marine-deep">Kesimpulan Refleksi Akhir</h2>
+            <p class="text-slate-600 leading-relaxed text-sm">
+                Proyek ini memberikan pemahaman mendalam bagi tim bahwa solusi yang bernilai tinggi tidak harus rumit dan mahal. Sesuatu yang sederhana, jika dirancang berbasis empati (Design Thinking) dan diuji secara disiplin, mampu membawa dampak positif yang besar bagi lingkungan dan kehidupan masyarakat luas.
             </p>
-
-            <p>
-                Mengembangkan sistem filtrasi yang lebih efektif
-                serta monitoring penggunaan air berbasis teknologi.
+            <p class="text-slate-600 leading-relaxed text-sm">
+                Melalui pengintegrasian platform monitoring berbasis AI ini, kami berharap dapat memperluas jangkauan edukasi SDGs (khususnya SDG 6 dan SDG 14) kepada generasi muda demi masa depan konservasi air dan keselamatan laut Indonesia yang berkelanjutan.
             </p>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-marine-deep text-white py-12 mt-auto border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <span class="text-xl font-bold text-white tracking-widest uppercase">🌊 AQUA-GUARD AI</span>
+                    <p class="text-xs text-slate-400 mt-2">Mendukung SDG 6 (Air Bersih) & SDG 14 (Ekosistem Laut) dengan Machine Learning</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-sm text-slate-300">© 2026 Platform Konservasi SDGs - Nadia Artamelina</p>
+                    <p class="text-xs text-slate-500 mt-1">Dikembangkan dengan React/HTML5, Tailwind, Flask, dan Scikit-Learn</p>
+                </div>
+            </div>
         </div>
+    </footer>
 
-    </div>
-
-</section>
-
-<section class="section">
-
-    <h2>Kesimpulan Refleksi</h2>
-
-    <p>
-        Proyek ini memberikan pemahaman bahwa solusi sederhana dapat
-        memberikan dampak yang signifikan apabila diterapkan secara
-        konsisten dan didukung oleh kesadaran masyarakat.
-    </p>
-
-    <p>
-        Melalui pendekatan Design Thinking, tim berhasil memahami
-        permasalahan, merancang solusi, melakukan pengujian, serta
-        mengevaluasi hasil yang diperoleh untuk mendukung pencapaian
-        Sustainable Development Goal (SDG) 6 tentang Air Bersih dan
-        Sanitasi Layak.
-    </p>
-
-</section>
-
-<footer>
-    <p>© SDG Project 2026 - Nadia Artamelina</p>
-</footer>
-
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>

@@ -3,98 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing - SDG 6</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Testing & Review - SDG Project</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        marine: {
+                            deep: '#0F2C59',
+                            cyan: '#00ADC6',
+                            teal: '#008080',
+                            light: '#F4F7FB',
+                            accent: '#38BDF8',
+                            darkTeal: '#0D5F60'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .glass-nav {
+            background: rgba(15, 44, 89, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes fillProgress {
+            from { width: 0%; }
+            to { width: 30%; }
+        }
+        .progress-bar-fill {
+            animation: fillProgress 1.5s ease-out forwards;
+        }
+    </style>
 </head>
+<body class="bg-marine-light text-slate-800 font-sans min-h-screen flex flex-col">
 
-<body>
+    <!-- TOP NAVBAR -->
+    <nav class="glass-nav text-white sticky top-0 z-50 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">🌊</span>
+                    <span class="font-extrabold text-xl tracking-wider bg-gradient-to-r from-marine-accent to-cyan-300 bg-clip-text text-transparent">AQUA-GUARD AI</span>
+                </div>
+                
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center space-x-8 font-medium">
+                    <a href="index.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">Home / SDGs</a>
+                    <a href="dashboard.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">Survei Dashboard</a>
+                    <a href="predict.html" class="hover:text-marine-accent px-1 py-2 text-sm transition-colors duration-200">AI Predictor & Simulation</a>
+                    
+                    <!-- Dropdown Design Thinking -->
+                    <div class="relative group">
+                        <button class="flex items-center space-x-1 text-marine-accent border-b-2 border-marine-accent transition px-1 py-2 text-sm focus:outline-none" id="dtDropdownBtn">
+                            <span>Design Thinking</span>
+                            <svg class="w-4 h-4 fill-current transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20">
+                                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                            </svg>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-52 bg-marine-deep text-white rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 border border-white/10 overflow-hidden py-1">
+                            <a href="empathy.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">🔍 Empathy & Research</a>
+                            <a href="ideation.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">💡 Ideation Process</a>
+                            <a href="prototype.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">🛠 Prototype Solution</a>
+                            <a href="testing.html" class="block px-4 py-2.5 bg-marine-teal/40 text-marine-accent transition text-sm">📊 Testing & Review</a>
+                            <a href="reflection.html" class="block px-4 py-2.5 hover:bg-marine-teal/40 hover:text-marine-accent transition text-sm">📝 Project Reflection</a>
+                        </div>
+                    </div>
+                </div>
 
-<nav>
-    <h2>SDG 6</h2>
-
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="empathy.html">Empathy</a></li>
-        <li><a href="ideation.html">Ideation</a></li>
-        <li><a href="prototype.html">Prototype</a></li>
-        <li><a href="testing.html">Testing</a></li>
-        <li><a href="reflection.html">Reflection</a></li>
-    </ul>
-</nav>
-
-<section class="hero">
-    <h1>Testing & Review</h1>
-
-    <p>
-        Tahap testing dilakukan untuk mengevaluasi efektivitas sistem
-        penampungan air hujan dalam mengurangi penggunaan air bersih
-        sehari-hari.
-    </p>
-</section>
-
-<section class="section">
-
-    <h2>Hasil Pengujian</h2>
-
-    <p>
-        Simulasi penggunaan air hujan dilakukan selama beberapa hari
-        untuk kebutuhan non-konsumsi seperti menyiram tanaman dan
-        membersihkan area sekitar.
-    </p>
-
-    <h3>Efisiensi Penggunaan Air</h3>
-
-    <div class="progress">
-        <div class="progress-fill"></div>
-    </div>
-
-    <p style="margin-top:15px;">
-        Penggunaan air bersih berhasil dikurangi hingga sekitar
-        <b>30%</b> selama masa pengujian.
-    </p>
-
-</section>
-
-<section class="section">
-
-    <h2>Temuan dan Kendala</h2>
-
-    <div class="reflection-grid">
-
-        <div class="reflection-card">
-            <h3>✅ Kelebihan</h3>
-            <p>
-                Mengurangi penggunaan air bersih dan memanfaatkan
-                sumber daya alam yang tersedia secara gratis.
-            </p>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="text-white hover:text-marine-accent focus:outline-none p-2 rounded-lg bg-white/5 border border-white/10">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="reflection-card">
-            <h3>⚠ Kendala</h3>
-            <p>
-                Kapasitas penampungan masih terbatas sehingga belum
-                mampu memenuhi kebutuhan dalam jangka waktu panjang.
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-marine-deep border-t border-white/10 px-4 py-4 space-y-3">
+            <a href="index.html" class="block hover:text-marine-accent text-base py-2 transition-colors">Home / SDGs</a>
+            <a href="dashboard.html" class="block hover:text-marine-accent text-base py-2 transition-colors">Survei Dashboard</a>
+            <a href="predict.html" class="block hover:text-marine-accent text-base py-2 transition-colors">AI Predictor & Simulation</a>
+            <div class="pt-2 border-t border-white/5">
+                <span class="block text-slate-400 text-xs uppercase tracking-wider mb-2">Design Thinking Process</span>
+                <a href="empathy.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">🔍 Empathy & Research</a>
+                <a href="ideation.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">💡 Ideation Process</a>
+                <a href="prototype.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">🛠 Prototype Solution</a>
+                <a href="testing.html" class="block text-marine-accent font-semibold text-sm pl-3 py-2">📊 Testing & Review</a>
+                <a href="reflection.html" class="block pl-3 py-2 text-sm text-slate-200 hover:text-marine-accent">📝 Project Reflection</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="bg-gradient-to-r from-marine-deep to-[#1A4B8C] text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto text-center md:text-left">
+            <span class="text-xs uppercase tracking-widest text-marine-accent font-bold">Design Thinking - Tahap 4</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mt-2 mb-2">Testing & Review</h1>
+            <p class="text-slate-300 max-w-2xl text-sm md:text-base">
+                Tahap pengujian lapangan untuk mengukur keandalan sistem penampungan air hujan dalam penggunaan non-konsumsi.
             </p>
         </div>
+    </header>
 
-        <div class="reflection-card">
-            <h3>💡 Saran Perbaikan</h3>
-            <p>
-                Menambah kapasitas tangki serta menggunakan sistem
-                penyaringan yang lebih baik agar kualitas air meningkat.
+    <!-- CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-12 flex-1">
+        
+        <!-- HASIL PENGUJIAN & EFISIENSI -->
+        <section class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 space-y-6">
+            <h2 class="text-2xl font-extrabold text-marine-deep">Hasil Pengujian Lapangan</h2>
+            <p class="text-slate-600 leading-relaxed text-sm">
+                Simulasi pemanfaatan air hujan dilakukan secara berkala selama musim pancaroba untuk aktivitas rumah tangga non-konsumsi seperti menyiram tanaman hias dan membersihkan area perkarangan.
             </p>
+            
+            <!-- Progress gauge -->
+            <div class="space-y-2 max-w-xl">
+                <div class="flex justify-between text-sm font-bold text-slate-700">
+                    <span>Efisiensi Penghematan Air Bersih</span>
+                    <span class="text-marine-cyan">30% Berhasil Dikurangi</span>
+                </div>
+                <div class="w-full bg-slate-100 h-6 rounded-full overflow-hidden p-1 border border-slate-200">
+                    <div class="bg-gradient-to-r from-marine-cyan to-marine-teal h-full rounded-full progress-bar-fill" style="width: 30%"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEMUAN DAN KENDALA (GRID) -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-extrabold text-marine-deep">Evaluasi Hasil Pengujian</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Kelebihan -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-l-4 border-l-teal-500">
+                    <h3 class="font-bold text-marine-deep mb-3 flex items-center gap-1.5 text-base">
+                        <span>✅</span> Kelebihan Utama
+                    </h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Sistem terbukti menurunkan biaya pemakaian air sumur/PDAM secara instan dan memanfaatkan air gratis dari alam yang ramah lingkungan.
+                    </p>
+                </div>
+
+                <!-- Kendala -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-l-4 border-l-red-500">
+                    <h3 class="font-bold text-marine-deep mb-3 flex items-center gap-1.5 text-base">
+                        <span>⚠</span> Kendala Ditemukan
+                    </h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Kapasitas tangki penampung saat ini masih terbatas sehingga suplai air cepat habis pada masa jeda hujan yang lama.
+                    </p>
+                </div>
+
+                <!-- Saran -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border-l-4 border-l-marine-cyan">
+                    <h3 class="font-bold text-marine-deep mb-3 flex items-center gap-1.5 text-base">
+                        <span>💡</span> Saran Pengembangan
+                    </h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Perlu dipasang tangki paralel dengan volume lebih besar dan peningkatan filter mekanis (karbon/pasir aktif) agar air tidak cepat berbau.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-marine-deep text-white py-12 mt-auto border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <span class="text-xl font-bold text-white tracking-widest uppercase">🌊 AQUA-GUARD AI</span>
+                    <p class="text-xs text-slate-400 mt-2">Mendukung SDG 6 (Air Bersih) & SDG 14 (Ekosistem Laut) dengan Machine Learning</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-sm text-slate-300">© 2026 Platform Konservasi SDGs - Nadia Artamelina</p>
+                    <p class="text-xs text-slate-500 mt-1">Dikembangkan dengan React/HTML5, Tailwind, Flask, dan Scikit-Learn</p>
+                </div>
+            </div>
         </div>
+    </footer>
 
-    </div>
-
-</section>
-
-<footer>
-    <p>© SDG Project 2026 - Nadia Artamelina</p>
-</footer>
-
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
